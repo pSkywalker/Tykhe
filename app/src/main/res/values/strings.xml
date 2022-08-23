@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
-    <string name="welcome_termsandservice"> Check out out Terms of Service </string>
+    <string name="welcome_termsandservice"> Check out out <u>Terms of Service</u> </string>
     <string name="welcome_button"> BEGIN </string>
     <string name="nextUppercase"> NEXT </string>
 
@@ -20,5 +20,6 @@
     <string name="biWeekly"> Biweekly </string>
     <string name="monthly"> Monthly </string>
 
+    <string name="setup_account_title">Create profile</string>
 
 </resources>

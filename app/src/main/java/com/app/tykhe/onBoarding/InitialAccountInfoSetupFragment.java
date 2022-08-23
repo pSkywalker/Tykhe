@@ -46,6 +46,10 @@ public class InitialAccountInfoSetupFragment extends Fragment {
         bindingHandle.setLifecycleOwner(this);
         bindingHandle.setVariable(1, this.onBoardingViewModel );
 
+        getActivity().getWindow().setStatusBarColor(getResources().getColor( R.color.white ));
+        getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+
+
         return bindingHandle.getRoot();
     }
 
