@@ -34,6 +34,7 @@ public class OnBoarding {
         this.accountHoldersAge = 25;
         this.contributionAmount = 0.00;
         this.intrestRate = 0.00;
+        this.lengthOfInvestment = 25;
     }
 
     public void setWeekly(){

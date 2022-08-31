@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -57,6 +58,9 @@ public class InitialAccountInfoSetupFragment extends Fragment {
     public void onViewCreated( View view, @Nullable Bundle savedInstanceState ){
         this.accountHoldersAgeSeekBar =getView().findViewById( R.id.ageSeekBar );
         this.accountHoldersEditText =  getView().findViewById( R.id.accountHoldersName );
+
+        this.nextButton = getView().findViewById( R.id.nextButton );
+
         //this.nextButton = getView().findViewById( R.id.nextButton );
 
         this.accountHoldersEditText.addTextChangedListener(new TextWatcher() {
@@ -90,7 +94,6 @@ public class InitialAccountInfoSetupFragment extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 

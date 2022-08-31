@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="on_boarding_edit_text_hint_color"> #47000000 </color>
+    <color name="on_boarding_edit_text_underline_color"> #12000000 </color>
+
+    <color name="seconday_button_background_unselected"> #e6e6e6 </color>
 </resources>

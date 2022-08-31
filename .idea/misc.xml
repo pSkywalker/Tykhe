@@ -3,19 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable-anydpi/money_sign.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable-anydpi/percent_sign.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.154" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/app_logo_background.xml" value="0.1" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/custom_seek_bar.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/custom_seek_bar_thumb.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/edit_text_cursor_color.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.154" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/main_button.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/main_button_black.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button.xml" value="0.141" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_black.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_enabled.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_enabled_black.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_white.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_edit_text.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/secondary_button_unselected.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/seconday_button_selected.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_on_boarding.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_account_info_screen.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_screen.xml" value="0.25" />
-        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_set_you_savings_init.xml" value="0.1" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_set_you_savings_init.xml" value="0.33" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/welcome_screen.xml" value="0.21240942028985507" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/mipmap-anydpi-v26/app_logo.xml" value="0.1495" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/mipmap-anydpi-v26/app_logo_round.xml" value="0.1495" />

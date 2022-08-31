@@ -18,7 +18,7 @@
     </style>
 
     <style name="Theme.Tykhe.onBoardingForm" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+        <item name="android:textColorHint">@color/on_boarding_edit_text_hint_color</item>
        <!--
         <item name="colorPrimary">#f12</item>
         <item name="colorSecondary">#f12</item>
