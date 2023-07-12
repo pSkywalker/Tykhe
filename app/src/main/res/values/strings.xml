@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Tykhe</string>
+    <string name="appVersion"> Tykhe v 1.0 </string>
     <string name="title_activity_home_screen">HomeScreen</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -45,5 +46,20 @@
     <string name="suggested"> Suggested: </string>
     <string name="setup_annual_interest_rate">Annual interest rate *</string>
     <string name="setup_length_of_investment">How long do you plan to save?</string>
+
+
+    <string name="settings_title"> Settings </string>
+    <string name="settings_savings_item"> Savings </string>
+    <string name="settings_saving_item_desc">Edit your savings preferences</string>
+    <string name="settings_profile_item"> Profile </string>
+    <string name="settings_profile_item_desc"> Edit name and age </string>
+
+    <string name="settings_terms_of_service">Terms of Service</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_contact_us">Contact Us</string>
+
+
+    <string name="settings_update">Save changes</string>
+
 
 </resources>

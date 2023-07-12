@@ -4,12 +4,11 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.app.tykhe.OnBoardingActivity;
+import com.app.tykhe.localStorage.entities.User;
+import com.app.tykhe.misc.SavingRateEnum;
 
-enum SavingRate {
-    Weekly,
-    Biweekly,
-    Monthly
-}
+import java.util.ArrayList;
+
 
 
 public class OnBoarding {
@@ -21,7 +20,7 @@ public class OnBoarding {
     public String accountHoldersName;
     public Integer accountHoldersAge;
 
-    public SavingRate savingRate;
+    public SavingRateEnum.savingRate savingRate;
 
     public double contributionAmount;
     public double intrestRate;
@@ -37,11 +36,17 @@ public class OnBoarding {
         this.lengthOfInvestment = 25;
     }
 
-    public void setWeekly(){
-        this.savingRate = SavingRate.Weekly;
+    public void loadOnBoardingForm(User user){
+        if( !user.name.isEmpty() ) {
+            this.accountHoldersName = user.name;
+        }
     }
-    public void setBiWeekly(){ this.savingRate = SavingRate.Biweekly; }
-    public void setMonthly(){ this.savingRate = SavingRate.Monthly; }
+
+    public void setWeekly(){
+        this.savingRate = SavingRateEnum.savingRate.Weekly;
+    }
+    public void setBiWeekly(){ this.savingRate = SavingRateEnum.savingRate.Biweekly; }
+    public void setMonthly(){ this.savingRate = SavingRateEnum.savingRate.Monthly; }
 
     public void previousPage(){
         if( this.currentStep == OnBoardingActivity.FIRST_PAGE) {
@@ -53,12 +58,12 @@ public class OnBoarding {
     }
 
     public void nextPage( ) {
-        if( this.currentStep + 1 > OnBoardingActivity.NUM_PAGES ) {
-            this.currentStep = OnBoardingActivity.FIRST_PAGE;
-        }
-        else {
+        //if( this.currentStep + 1 > OnBoardingActivity.NUM_PAGES ) {
+        //    this.currentStep = OnBoardingActivity.FIRST_PAGE;
+        //}
+        //else {
             this.currentStep++;
-        }
+        //}
     }
 
     public String getAccountHoldersName() {
@@ -79,11 +84,11 @@ public class OnBoarding {
         return this;
     }
 
-    public SavingRate getSavingRate() {
+    public SavingRateEnum.savingRate getSavingRate() {
         return savingRate;
     }
 
-    public void setSavingRate(SavingRate savingRate) {
+    public void setSavingRate(SavingRateEnum.savingRate savingRate) {
         this.savingRate = savingRate;
     }
 
@@ -117,6 +122,7 @@ public class OnBoarding {
     public Integer getCurrentStep() {
         return currentStep;
     }
+
 
     public void setCurrentStep(Integer currentStep) {
         this.currentStep = currentStep;

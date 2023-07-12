@@ -11,6 +11,7 @@
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/custom_seek_bar_thumb.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/edit_text_cursor_color.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.134" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/ic_launcher_background.xml" value="0.154" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/main_button.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/main_button_black.xml" value="0.1745" />
@@ -18,12 +19,18 @@
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_black.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_enabled.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_enabled_black.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_enabled_white.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_button_white.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/on_boarding_edit_text.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/secondary_button_unselected.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/seconday_button_selected.xml" value="0.1745" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/settings_update_button.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_on_boarding.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_settings.xml" value="0.33" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_update_account.xml" value="0.13829787234042554" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_update_savings.xml" value="0.1" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_update_settings.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_account_info_screen.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_screen.xml" value="0.25" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/fragment_welcome_set_you_savings_init.xml" value="0.33" />

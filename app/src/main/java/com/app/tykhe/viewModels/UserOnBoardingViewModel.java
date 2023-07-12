@@ -22,6 +22,7 @@ public class UserOnBoardingViewModel extends ViewModel {
 
     private void createOnBoardingForm(){
         this.accountOnBoarding = new MutableLiveData< OnBoarding >();
+
         this.accountOnBoarding.setValue( new OnBoarding() );
     }
 
@@ -29,6 +30,8 @@ public class UserOnBoardingViewModel extends ViewModel {
         this.accountOnBoarding.setValue(
                 this.accountOnBoarding.getValue().setAccountHoldersName( accountName )
         );
+
+
     }
     public void setAccountAge( Integer age ){
         this.accountOnBoarding.setValue(
@@ -91,10 +94,12 @@ public class UserOnBoardingViewModel extends ViewModel {
 
         curr.nextPage();
         this.accountOnBoarding.setValue( curr );
+
+
     }
 
     public void start(){
-
+        this.nextPage();
     }
 
 }

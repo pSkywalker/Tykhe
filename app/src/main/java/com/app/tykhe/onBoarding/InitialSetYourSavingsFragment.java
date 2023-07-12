@@ -80,13 +80,15 @@ public class InitialSetYourSavingsFragment extends Fragment {
 
         this.setAllSavingsRates(1);
         this.setSuggestedRates(1);
-        this.setSelectedSuggestedAmount(1);
         this.setViewModalAndUISuggestedAmountData(1);
+        this.setSelectedSuggestedAmount(1);
+
+        //this.onBoardingViewModel.selectBiWeekly();
 
         savingRates.get(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBoardingViewModel.selectWeekly();
+               // onBoardingViewModel.selectWeekly();
                 setAllSavingsRates( 0 );
 
                 setSuggestedRates( 0 );
@@ -97,7 +99,7 @@ public class InitialSetYourSavingsFragment extends Fragment {
         savingRates.get(1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBoardingViewModel.selectBiWeekly();
+              //  onBoardingViewModel.selectBiWeekly();
                 setAllSavingsRates( 1 );
 
                 setSuggestedRates( 1 );
@@ -108,7 +110,7 @@ public class InitialSetYourSavingsFragment extends Fragment {
         savingRates.get(2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBoardingViewModel.selectMonthly();
+               // onBoardingViewModel.selectMonthly();
                 setAllSavingsRates( 2 );
 
                 setSuggestedRates( 2 );
@@ -208,6 +210,27 @@ public class InitialSetYourSavingsFragment extends Fragment {
         this.savingRates.get( item ).setBackground( getResources().getDrawable(R.drawable.main_button_black) );
         TextView initialSavingRateText = (TextView) savingRates.get(item).getChildAt(0);
         initialSavingRateText.setTextColor(Color.WHITE);
+
+        switch ( item ) {
+            case 0:
+                this.onBoardingViewModel.selectWeekly();
+
+                Log.d( "itemNumber", "weekly" );
+                break;
+            case 1:
+                this.onBoardingViewModel.selectBiWeekly();
+
+                Log.d( "itemNumber", "biweekly" );
+                break;
+            case 2:
+                this.onBoardingViewModel.selectMonthly();
+
+                Log.d( "itemNumber", "monthly" );
+                break;
+        }
+
+        //this.onBoardingViewModel.selectMonthly();
+
         for( Integer x = 0; x < this.savingRates.size() ; x++  ) {
             if( x != item ) {
                 this.savingRates.get(x).setBackground( getResources().getDrawable(R.drawable.main_button_white) );

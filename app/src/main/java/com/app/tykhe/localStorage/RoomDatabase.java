@@ -1,9 +1,46 @@
 package com.app.tykhe.localStorage;
 
-import androidx.room.Database;
+import android.content.Context;
 
-//@Database( entities = { User.class, SavingItem.class  } )
+import androidx.room.Database;
+import androidx.room.Room;
+
+import com.app.tykhe.localStorage.dao.UserDao;
+import com.app.tykhe.localStorage.entities.User;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+@Database( entities = { User.class }, version = 4 )
 public abstract class RoomDatabase extends androidx.room.RoomDatabase {
+
+    private static volatile RoomDatabase INSTANCE = null;
+    private static final int NUMBER_OF_THREADS = 4;
+
+    public abstract UserDao userDao();
+
+    public static RoomDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (RoomDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            RoomDatabase.class, "word_database")
+                            .fallbackToDestructiveMigration()
+                            //.addCallback(sRoomDatabaseCallback)
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
+
+
+    static final ExecutorService databaseWriteExecutor =
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
+
+}
 /*
     abstract WordDao wordDao();
 
@@ -51,4 +88,4 @@ public abstract class RoomDatabase extends androidx.room.RoomDatabase {
         }
     };
 */
-}
+
