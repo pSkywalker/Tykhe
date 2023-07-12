@@ -16,7 +16,11 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Tykhe.Spashscreen.OnBoarding"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
+
+
+
+
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="true"
@@ -30,9 +34,17 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".settings.UpdateSavingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Tykhe" />
+        <activity
             android:name=".settings.UpdateAccountActivity"
             android:exported="false"
             android:theme="@style/Theme.Tykhe" />
+
+
+
+
         <activity
             android:name=".HomeActivity"
             android:exported="true"

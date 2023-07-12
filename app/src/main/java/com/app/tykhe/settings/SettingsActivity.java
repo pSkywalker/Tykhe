@@ -12,6 +12,7 @@ import com.app.tykhe.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private LinearLayout updateSavingsButton;
     private LinearLayout updateAccountButton;
 
     @Override
@@ -19,11 +20,19 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        this.updateSavingsButton = (LinearLayout) findViewById(R.id.savingsEditWrapper);
         this.updateAccountButton = (LinearLayout) findViewById(R.id.profileItemWrapper);
 
 
 
 
+        this.updateSavingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent updateIntent = new Intent( SettingsActivity.this, UpdateSavingsActivity.class);
+                startActivity(updateIntent);
+            }
+        });
         this.updateAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -80,6 +80,9 @@ public class UpdateAccountActivity extends AppCompatActivity {
                 if( !charSequence.toString().isEmpty() ) {
                     setClickableUpdateButton(true);
                 }
+                else {
+                    setClickableUpdateButton(false);
+                }
             }
 
             @Override
@@ -110,6 +113,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         this.updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AsyncTask.execute( () -> {
                     repo.updateUserFromSettings(user.name, user.age);
                     runOnUiThread(new Runnable(){

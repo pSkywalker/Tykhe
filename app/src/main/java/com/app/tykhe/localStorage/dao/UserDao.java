@@ -27,6 +27,20 @@ public interface UserDao {
             "where user_id = 1" )
     int updateUser( String name, Integer age );
 
+
+    @Query("update user " +
+            "set " +
+            "savingRate = :savingRate," +
+            "contributionAmount  = :contributionAmount," +
+            "interstRate = :interstRate," +
+            "lengthOfInvestment = :lengthOfInvestment " +
+            "where user_id = 1")
+    int updateSavings(
+                      SavingRateEnum.savingRate savingRate,
+                      double contributionAmount,
+                      double interstRate,
+                      Integer lengthOfInvestment  );
+
     @Query( "update user " +
             "set " +
             "name = :name," +

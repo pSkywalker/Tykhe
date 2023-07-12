@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import com.app.tykhe.localStorage.dao.UserDao;
 import com.app.tykhe.localStorage.entities.User;
+import com.app.tykhe.misc.SavingRateEnum;
 import com.app.tykhe.models.OnBoarding;
 
 import java.util.List;
@@ -39,6 +40,15 @@ public class Repo {
 
     public int updateUserFromSettings( String name, Integer age ){
         return this.userDao.updateUser(name , age);
+    }
+
+    public int updateSavingsFromSettings(SavingRateEnum.savingRate savingRate, double contributionAmount, double interestRate, Integer lengthOfInvestment ){
+        return this.userDao.updateSavings(
+                savingRate,
+                contributionAmount,
+                interestRate,
+                lengthOfInvestment
+        );
     }
 
     public void createUser( ){
