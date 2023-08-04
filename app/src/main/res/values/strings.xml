@@ -62,6 +62,23 @@
     <string name="settings_savings_update_title">Edit savings</string>
 
     <string name="settings_update">Save changes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="reminders_saving_type_title">Saving rate: </string>
+
+    <string name="reminders_weekly_biweekly_title">Repeat</string>
+
+    <string name="reminders_s">S</string>
+    <string name="reminders_m">M</string>
+    <string name="reminders_t">T</string>
+    <string name="reminders_W">W</string>
+    <string name="reminders_f">F</string>
+
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 
 </resources>

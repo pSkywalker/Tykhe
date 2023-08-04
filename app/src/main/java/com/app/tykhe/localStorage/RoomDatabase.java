@@ -5,19 +5,22 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 
+import com.app.tykhe.localStorage.dao.ReminderDao;
 import com.app.tykhe.localStorage.dao.UserDao;
+import com.app.tykhe.localStorage.entities.Reminder;
 import com.app.tykhe.localStorage.entities.User;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database( entities = { User.class }, version = 4 )
+@Database( entities = { User.class, Reminder.class}, version = 5 )
 public abstract class RoomDatabase extends androidx.room.RoomDatabase {
 
     private static volatile RoomDatabase INSTANCE = null;
     private static final int NUMBER_OF_THREADS = 4;
 
     public abstract UserDao userDao();
+    public abstract ReminderDao reminderDao();
 
     public static RoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -26,6 +29,7 @@ public abstract class RoomDatabase extends androidx.room.RoomDatabase {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             RoomDatabase.class, "word_database")
                             .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
                             //.addCallback(sRoomDatabaseCallback)
                             .build();
                 }

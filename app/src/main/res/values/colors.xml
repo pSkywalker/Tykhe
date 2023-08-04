@@ -14,7 +14,7 @@
 
     <color name="seconday_button_background_unselected"> #e6e6e6 </color>
 
-
+    <color name="reminders_days_of_week_background">#F4F4F4</color>
 
 
     <color name="hr_tag">#12000000</color>

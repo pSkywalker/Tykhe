@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".reminder.WeeklyRemindersFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/reminders_weekly_biweekly_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/daysOfWeek"
+        app:justifyContent="space_around"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+
+        <!--
+            an element like a textview that can store values as well, can act as a state button
+        -->
+
+
+        <LinearLayout
+            android:id="@+id/sundayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/sundayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_s" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mondayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/mondayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_m" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/tuesdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/tuesdayText"
+                android:text="@string/reminders_t"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/wednesdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/wednesdayText"
+                android:text="@string/reminders_W"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/thursdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/thursdayText"
+                android:text="@string/reminders_t"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fridayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/fridayText"
+                android:text="@string/reminders_f"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/saturdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/saturdayText"
+                android:text="@string/reminders_s"
+                />
+
+        </LinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
