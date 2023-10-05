@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,8 +9,461 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="@string/reminders_weekly_biweekly_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/daysOfWeekOne"
+        app:justifyContent="space_around"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+
+        <!--
+            an element like a textview that can store values as well, can act as a state button
+        -->
+
+
+        <LinearLayout
+            android:id="@+id/sundayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/sundayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_s" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mondayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/mondayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_m" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/tuesdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/tuesdayText"
+                android:text="@string/reminders_t"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/wednesdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/wednesdayText"
+                android:text="@string/reminders_W"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/thursdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/thursdayText"
+                android:text="@string/reminders_t"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fridayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/fridayText"
+                android:text="@string/reminders_f"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/saturdayWrapper"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:background="@drawable/secondary_button_unselected"
+            android:theme="@style/main_button_inner_black"
+            >
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/saturdayText"
+                android:text="@string/reminders_s"
+                />
+
+        </LinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/daysOfWeekTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:justifyContent="space_around"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daysOfWeekOne">
+
+
+        <!--
+            an element like a textview that can store values as well, can act as a state button
+        -->
+
+
+        <LinearLayout
+            android:id="@+id/sundayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/sundayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_s" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mondayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/mondayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_m" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tuesdayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/tuesdayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_t" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/wednesdayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/wednesdayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_W" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/thursdayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/thursdayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_t" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fridayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/fridayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_f" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/saturdayWrapperTwo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/secondary_button_unselected"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:theme="@style/main_button_inner_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/saturdayTextTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reminders_s" />
+
+        </LinearLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/selectTimeOfDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/daysOfWeekTwo"
+        android:background="@color/reminders_days_of_week_background"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reminders_time_choosing_title"
+            android:textColor="@color/black" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            >
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/selectedTimeOfDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_16" />
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -81,6 +81,12 @@ public class UserOnBoardingViewModel extends ViewModel {
         );
     }
 
+    public void setCurrentSavings( double amount ){
+        this.accountOnBoarding.setValue(
+                this.accountOnBoarding.getValue().setCurrentSavings( amount )
+        );
+    }
+
     public void previousPage(){
         OnBoarding curr = this.accountOnBoarding.getValue();
         curr.previousPage();

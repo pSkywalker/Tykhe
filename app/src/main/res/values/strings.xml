@@ -46,7 +46,7 @@
     <string name="suggested"> Suggested: </string>
     <string name="setup_annual_interest_rate">Annual interest rate *</string>
     <string name="setup_length_of_investment">How long do you plan to save?</string>
-
+    <string name="setup_current_savings">What are your current savings?</string>
 
     <string name="settings_title"> Settings </string>
     <string name="settings_savings_item"> Savings </string>
@@ -74,11 +74,36 @@
     <string name="reminders_W">W</string>
     <string name="reminders_f">F</string>
 
+    <string name="reminders_monthly_selection_title">Day of the month</string>
 
+    <string name="reminders_time_choosing_title">Choose time</string>
+
+    <string name="reminders_savings_reminder">Saving reminder</string>
+
+    <string name="reminders_save_changes_btn">SAVE CHANGES</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <string name="home_screen_current_savings">Current Savings</string>
+    <string name="home_screen_growth"> Wealth growth rate </string>
+    <string name="home_screen_age">By age</string>
+    <string name="home_screen_total_savings"> Estimated savings </string>
 
+    <string name="home_screen_saving_items"> Saving history </string>
+    <string name="home_screen_saving_items_no_items"> No saving history </string>
+
+    <string name="home_screen_saving_item_btn_complete"> COMPLETE  </string>
+    <string name="home_screen_saving_item_btn_uncomplete"> UNCOMPLETE </string>
+    <string name="home_screen_saving_item_btn_overdue"> OVERDUE </string>
+
+
+
+
+
+
+
+    <string name="notification_title">Time to save</string>
+    <string name="notification_text">Open Tykhe to start saving!</string>
 
 </resources>

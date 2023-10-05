@@ -6,14 +6,16 @@ import androidx.room.Database;
 import androidx.room.Room;
 
 import com.app.tykhe.localStorage.dao.ReminderDao;
+import com.app.tykhe.localStorage.dao.SavingItemDao;
 import com.app.tykhe.localStorage.dao.UserDao;
 import com.app.tykhe.localStorage.entities.Reminder;
+import com.app.tykhe.localStorage.entities.SavingItem;
 import com.app.tykhe.localStorage.entities.User;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database( entities = { User.class, Reminder.class}, version = 5 )
+@Database( entities = { User.class, Reminder.class, SavingItem.class}, version = 12 )
 public abstract class RoomDatabase extends androidx.room.RoomDatabase {
 
     private static volatile RoomDatabase INSTANCE = null;
@@ -21,13 +23,14 @@ public abstract class RoomDatabase extends androidx.room.RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract ReminderDao reminderDao();
+    public abstract SavingItemDao savingItemDao();
 
     public static RoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (RoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            RoomDatabase.class, "word_database")
+                            RoomDatabase.class, "local_database")
                             .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
                             //.addCallback(sRoomDatabaseCallback)

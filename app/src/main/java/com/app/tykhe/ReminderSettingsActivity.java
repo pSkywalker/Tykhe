@@ -1,33 +1,27 @@
-package com.app.tykhe.reminder;
+package com.app.tykhe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.app.tykhe.OnBoardingActivity;
-import com.app.tykhe.R;
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.Reminder;
-import com.app.tykhe.localStorage.entities.User;
-import com.app.tykhe.onBoarding.InitialAccountInfoSetupFragment;
-import com.app.tykhe.onBoarding.InitialSetYourSavingsFragment;
-import com.app.tykhe.onBoarding.WelcomeFragment;
+import com.app.tykhe.reminder.BiWeeklyRemindersFragment;
+import com.app.tykhe.reminder.MonthlyRemindersFragment;
+import com.app.tykhe.reminder.WeeklyRemindersFragment;
 import com.app.tykhe.viewModels.ReminderDataViewModel;
 import com.app.tykhe.viewModels.UserOnBoardingViewModel;
 import com.suke.widget.SwitchButton;
@@ -76,7 +70,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
         this.typeOfSavingFlow = (ViewPager2) findViewById(R.id.typeOfSavingFlow);
 
         this.typeOfSavingFlow.setUserInputEnabled(( false ));
-        this.pageAdapter = new OnBoardingActivity.ReminderSettingsActivity.ReminderTypePagerAdapter(this);
+        this.pageAdapter = new ReminderSettingsActivity.ReminderTypePagerAdapter(this);
         this.typeOfSavingFlow.setAdapter( this.pageAdapter );
 
         this.timeOfReminderTextView = (TextView) findViewById(R.id.timeOfReminderTextView);

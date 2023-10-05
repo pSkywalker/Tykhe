@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="#F4F4F4" /> <!-- Background color -->
+            <corners android:radius="25dp" /> <!-- Adjust the radius to control corner roundness -->
+        </shape>
+    </item>
+</layer-list>

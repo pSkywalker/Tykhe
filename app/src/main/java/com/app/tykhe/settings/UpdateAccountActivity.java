@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.tykhe.R;
+import com.app.tykhe.SettingsActivity;
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.User;
 

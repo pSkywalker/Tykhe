@@ -10,12 +10,8 @@ public class Reminder {
     @PrimaryKey(autoGenerate = true)
     public int pk;
 
-
     @ColumnInfo(name = "user_id")
     public int user_fk;
-
-
-
 
     @ColumnInfo(name = "chosenType")
     public String chosenType;

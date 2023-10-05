@@ -32,6 +32,7 @@ public class InitialSetYourSavingsFragment extends Fragment {
 
     private EditText editText_contributions;
     private EditText editText_interestRates;
+    private EditText editText_currentSavings;
 
     private SeekBar seekBar_lengthOfInvestment;
     private TextView lengthOfInvestmentTextView;
@@ -64,6 +65,7 @@ public class InitialSetYourSavingsFragment extends Fragment {
     public void onViewCreated( View view, @Nullable Bundle savedInstanceState ){
         this.editText_contributions = view.findViewById(R.id.input_contributionAmount);
         this.editText_interestRates = view.findViewById(R.id.input_interestRate);
+        this.editText_currentSavings = view.findViewById(R.id.input_currentSavings);
 
         this.seekBar_lengthOfInvestment = view.findViewById(R.id.input_durationSeekBar);
         this.lengthOfInvestmentTextView = view.findViewById(R.id.lengthOfInvestmentSelected);
@@ -182,6 +184,23 @@ public class InitialSetYourSavingsFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 onBoardingViewModel.setInterestRate( editable.toString() );
+            }
+        });
+
+        this.editText_currentSavings.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                onBoardingViewModel.setCurrentSavings( Double.parseDouble( editable.toString() ) );
             }
         });
 

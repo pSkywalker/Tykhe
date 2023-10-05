@@ -19,5 +19,6 @@
 
     <color name="hr_tag">#12000000</color>
 
+    <color name="transparent">#00000000</color>
 
 </resources>

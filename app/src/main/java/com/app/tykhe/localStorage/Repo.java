@@ -6,8 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.app.tykhe.localStorage.dao.ReminderDao;
+import com.app.tykhe.localStorage.dao.SavingItemDao;
 import com.app.tykhe.localStorage.dao.UserDao;
 import com.app.tykhe.localStorage.entities.Reminder;
+import com.app.tykhe.localStorage.entities.SavingItem;
 import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.misc.SavingRateEnum;
 import com.app.tykhe.models.OnBoarding;
@@ -18,6 +20,7 @@ public class Repo {
 
     private UserDao userDao;
     private ReminderDao reminderDao;
+    private SavingItemDao savingItemDao;
 
     private LiveData<List<User>> userAccount;
     private  LiveData<List<Reminder>> currentReminder;
@@ -26,8 +29,10 @@ public class Repo {
         RoomDatabase db = RoomDatabase.getDatabase( application );
         this.userDao = db.userDao();
         this.reminderDao = db.reminderDao();
+        this.savingItemDao = db.savingItemDao();
         this.userAccount =  db.userDao().getUser();
         this.currentReminder = db.reminderDao().getAllReminders();
+
     }
     public LiveData<List<User>> getUser(){
         return this.userAccount;
@@ -40,9 +45,14 @@ public class Repo {
                 onBoarding.savingRate,
                 onBoarding.contributionAmount,
                 onBoarding.intrestRate,
-                onBoarding.lengthOfInvestment
+                onBoarding.lengthOfInvestment,
+                onBoarding.currentSavings
         );
     }
+    public int updateCurrentSavings( double newCurrent ){
+        return this.userDao.updateCurrentSavings( newCurrent );
+    }
+
     public void createUser( ){
         RoomDatabase.databaseWriteExecutor.execute( () -> {
             User user = new User();
@@ -51,12 +61,20 @@ public class Repo {
         });
     }
 
+
     public LiveData<List<Reminder>> getReminder(){
         return this.currentReminder;
     }
 
     public void updateReminder(Reminder reminder){
-        this.reminderDao.update(reminder);
+        this.reminderDao.update(
+                reminder.chosenType,
+                reminder.status,
+                reminder.weeklyChoonenDay,
+                reminder.biweeklyChosenDay,
+                reminder.monthlyChosenDay,
+                reminder.time
+        );
     }
 
     public void createReminder(){
@@ -66,6 +84,7 @@ public class Repo {
         reminder.weeklyChoonenDay = 1;
         reminder.biweeklyChosenDay = 1;
         reminder.monthlyChosenDay = 1;
+        reminder.time = "1:00 pm";
         reminder.status = true;
 
         this.reminderDao.insert(
@@ -78,16 +97,27 @@ public class Repo {
         return this.userDao.updateUser(name , age);
     }
 
-    public int updateSavingsFromSettings(SavingRateEnum.savingRate savingRate, double contributionAmount, double interestRate, Integer lengthOfInvestment ){
+    public int updateSavingsFromSettings(SavingRateEnum.savingRate savingRate, double contributionAmount, double interestRate, Integer lengthOfInvestment, double currentSavings ){
         return this.userDao.updateSavings(
                 savingRate,
                 contributionAmount,
                 interestRate,
-                lengthOfInvestment
+                lengthOfInvestment,
+                currentSavings
         );
     }
 
+    public void createSavingItem(SavingItem savingItem){
+        this.savingItemDao.insert( savingItem );
+    }
 
+    public LiveData<List<SavingItem>> getAllSavingItems(){
+        return this.savingItemDao.getSavingItems();
+    }
+
+    public int updateSavingItemStatus( int newStatus, int savingItemId ){
+        return this.savingItemDao.updateSavingItemStatus( newStatus, savingItemId );
+    }
 
 }
 

@@ -1,9 +1,11 @@
 package com.app.tykhe.reminder;
 
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.app.tykhe.R;
+import com.app.tykhe.models.Reminder;
+import com.app.tykhe.viewModels.ReminderDataViewModel;
 
 import java.util.ArrayList;
 
@@ -40,11 +45,16 @@ public class WeeklyRemindersFragment extends Fragment {
     private TextView thursdayButton;
     private TextView fridayButton;
     private TextView saturdayButton;
-
-
-
-
     private ArrayList<TextView> weeklyButtons = new ArrayList<TextView>();
+
+    private LinearLayout selectTimeOfDay;
+    private TextView selectedTimeOfDay;
+
+    private ReminderDataViewModel reminderViewModel;
+    private Reminder currentReminderObject = new Reminder();
+    private boolean initalLoad = true;
+
+
 
 
     public WeeklyRemindersFragment() {
@@ -96,6 +106,71 @@ public class WeeklyRemindersFragment extends Fragment {
         this.weeklyButtons.add( view.findViewById(R.id.fridayText) );
         this.weeklyButtons.add( view.findViewById(R.id.saturdayText));
 
+        this.selectTimeOfDay = (LinearLayout) view.findViewById(R.id.selectTimeOfDay);
+        this.selectedTimeOfDay = ( TextView ) view.findViewById(R.id.selectedTimeOfDay);
+
+        this.reminderViewModel = new ViewModelProvider(requireActivity()).get(ReminderDataViewModel.class);
+        this.reminderViewModel.getSelectedReminderObject().observe(getViewLifecycleOwner(), reminder -> {
+            if (initalLoad){
+                LinearLayout parent = (LinearLayout) ((ViewGroup) weeklyButtons.get(reminder.weeklyDay).getParent());
+                weeklyButtons.get(reminder.weeklyDay).setTextColor(getResources().getColor(R.color.white));
+                parent.setBackground(getResources().getDrawable(R.drawable.seconday_button_selected));
+                this.currentReminderObject = reminder;
+                this.selectedTimeOfDay.setText( reminder.time );
+                initalLoad = false;
+            }
+        });
+
+        this.selectTimeOfDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        getActivity(),
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                                String amPm;
+                                if (i >= 0 && i < 12) {
+                                    amPm = " am";
+                                } else {
+                                    amPm = " pm";
+                                }
+                                String minutes = "";
+                                if( String.valueOf(i1).length() == 1 ) {
+                                     minutes = "0"+String.valueOf(i1);
+                                }
+                                else {
+                                    minutes = String.valueOf(i1);
+                                }
+                                currentReminderObject.time = String.valueOf(i) + ":" + minutes  + amPm;
+                                selectedTimeOfDay.setText( currentReminderObject.time );
+                                //currentReminderObject.savingRate = "weekly";
+                                reminderViewModel.updateReminderObject(currentReminderObject);
+                            }
+                        }, // OnTimeSetListener callback
+                        /*
+                        Integer.valueOf(currentReminderObject.time.substring(
+                                0,
+                                currentReminderObject.time.indexOf(':')
+                        )),
+                        Integer.valueOf(currentReminderObject.time.substring(
+                                currentReminderObject.time.indexOf(':'),
+                                currentReminderObject.time.indexOf(' ')
+                        ))
+                        */
+                        1,
+                        0
+
+                        ,
+                        false // 24-hour format
+                );
+
+                timePickerDialog.getContext().getTheme().applyStyle(R.style.CustomDatePickerDialogTheme, true);
+                timePickerDialog.show();
+            }
+        });
+
         for( Integer x = 0; x < this.weeklyButtons.size(); x++ ) {
             final Integer weeklyItemSelected = x;
             LinearLayout parent = (LinearLayout)( (ViewGroup) weeklyButtons.get(x).getParent() );
@@ -112,6 +187,9 @@ public class WeeklyRemindersFragment extends Fragment {
                     weeklyButtons.get(weeklyItemSelected).setTextColor(getResources().getColor(R.color.white));
                     parent.setBackground(getResources().getDrawable(R.drawable.seconday_button_selected));
 
+                    currentReminderObject.weeklyDay = weeklyItemSelected;
+                    currentReminderObject.savingRate = "weekly";
+                    reminderViewModel.updateReminderObject(currentReminderObject);
                 }
             });
 

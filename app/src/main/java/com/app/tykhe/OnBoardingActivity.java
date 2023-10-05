@@ -10,6 +10,7 @@ import androidx.room.Room;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,14 +56,14 @@ public class OnBoardingActivity extends AppCompatActivity {
         this.pageAdapter = new OnBoardingPagerAdapter(this, onBoardingDataSource );
         this.onBoardingFlow.setAdapter( this.pageAdapter );
 
-
+/*
         repo.getUser().observe( this, value -> {
             if( !value.isEmpty() ) {
                 this.user = value.get(0);
                 Log.d("user_", this.user.name);
             }
         } );
-
+*/
         this.onBoardingDataSource.getOnBoardingForm().observe( this, onBoardingForm -> {
 
 
@@ -88,6 +89,9 @@ public class OnBoardingActivity extends AppCompatActivity {
                         Log.d("currentStep", "from case 3");
                         AsyncTask.execute( () -> {
                             this.repo.updateUser(onBoardingForm);
+                            this.repo.createReminder();
+                            Intent homeActivityIntent = new Intent( OnBoardingActivity.this, HomeActivity.class );
+                            startActivity( homeActivityIntent );
                         });
                         break;
                     case 0:

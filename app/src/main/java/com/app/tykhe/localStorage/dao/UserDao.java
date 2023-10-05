@@ -33,13 +33,16 @@ public interface UserDao {
             "savingRate = :savingRate," +
             "contributionAmount  = :contributionAmount," +
             "interstRate = :interstRate," +
-            "lengthOfInvestment = :lengthOfInvestment " +
+            "lengthOfInvestment = :lengthOfInvestment, " +
+            "currentSavings = :currentSavings " +
             "where user_id = 1")
     int updateSavings(
                       SavingRateEnum.savingRate savingRate,
                       double contributionAmount,
                       double interstRate,
-                      Integer lengthOfInvestment  );
+                      Integer lengthOfInvestment,
+                      double currentSavings
+                      );
 
     @Query( "update user " +
             "set " +
@@ -48,7 +51,8 @@ public interface UserDao {
             "savingRate = :savingRate," +
             "contributionAmount  = :contributionAmount," +
             "interstRate = :interstRate," +
-            "lengthOfInvestment = :lengthOfInvestment " +
+            "lengthOfInvestment = :lengthOfInvestment, " +
+            "currentSavings = :currentSavings " +
             "where user_id = 1" )
     int onBoardingUpdate(
             String name,
@@ -56,8 +60,15 @@ public interface UserDao {
             SavingRateEnum.savingRate savingRate,
             double contributionAmount,
             double interstRate,
-            Integer lengthOfInvestment
+            Integer lengthOfInvestment,
+            double currentSavings
     );
+
+    @Query( "update user " +
+            "set " +
+            "currentSavings = :newCurrent " +
+            "where user_id = 1")
+    int updateCurrentSavings( double newCurrent );
 
     @Insert
     void insert( User user );

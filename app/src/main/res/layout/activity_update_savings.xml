@@ -359,6 +359,51 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/currentSavingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/setup_current_savings"
+            android:textSize="17dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/seekBarWrapper"
+            />
+
+        <LinearLayout
+            android:id="@+id/currentSavingsWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/currentSavingsTitle">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/input_currentSavings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+
+                android:hint="@string/setup_savings_zero"
+                android:maxLines="1"
+                android:paddingBottom="20dp"
+                android:textCursorDrawable="@drawable/edit_text_cursor_color"
+                app:backgroundTint="@color/on_boarding_edit_text_underline_color"
+
+                android:drawableLeft="@drawable/money_sign"
+
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_update"
             android:layout_width="0dp"

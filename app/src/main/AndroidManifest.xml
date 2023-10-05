@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.tykhe">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,37 +13,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tykhe.Spashscreen.Main">
 
+        <receiver
+            android:name=".services.Restarter"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="restartservice" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".services.SavingItemsSpawner"
+            android:enabled="true"
+            android:exported="false"></service>
+
         <activity
             android:name=".OnBoardingActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Tykhe.Spashscreen.OnBoarding"
-            android:windowSoftInputMode="adjustPan" >
-
-        </activity>
-
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
-            android:name=".reminder.ReminderSettingsActivity"
+            android:name=".ReminderSettingsActivity"
             android:exported="true"
-            android:theme="@style/Theme.Tykhe"
-            >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
+            android:theme="@style/Theme.Tykhe"></activity>
         <activity
-            android:name=".settings.SettingsActivity"
+            android:name=".SettingsActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Tykhe"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".settings.UpdateSavingsActivity"
             android:exported="false"
@@ -53,7 +53,14 @@
         <activity
             android:name=".HomeActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Tykhe">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

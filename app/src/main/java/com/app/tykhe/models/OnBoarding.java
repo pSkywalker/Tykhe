@@ -27,6 +27,8 @@ public class OnBoarding {
 
     public Integer lengthOfInvestment;
 
+    public double currentSavings;
+
     public OnBoarding(){
         this.currentStep = OnBoardingActivity.FIRST_PAGE;
         this.accountHoldersName = "";
@@ -116,6 +118,11 @@ public class OnBoarding {
 
     public OnBoarding setLengthOfInvestment(Integer lengthOfInvestment) {
         this.lengthOfInvestment = lengthOfInvestment;
+        return this;
+    }
+
+    public OnBoarding setCurrentSavings( double currentSavings ){
+        this.currentSavings = currentSavings;
         return this;
     }
 

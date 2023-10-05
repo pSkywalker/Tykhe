@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.tykhe.R;
+import com.app.tykhe.SettingsActivity;
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.misc.SavingRateEnum;
@@ -36,6 +37,7 @@ public class UpdateSavingsActivity extends AppCompatActivity {
 
     private EditText amountToSaveInput;
     private EditText interestRateInput;
+    private EditText currentSavings;
 
     private TextView ageToSaveTextView;
     private SeekBar ageToSaveToInput;
@@ -70,6 +72,7 @@ public class UpdateSavingsActivity extends AppCompatActivity {
 
                 this.amountToSaveInput.setText( String.valueOf( user.contributionAmount ));
                 this.interestRateInput.setText( String.valueOf( user.interstRate ));
+                this.currentSavings.setText ( String.valueOf( user.currentSavings )  );
                 this.ageToSaveToInput.setProgress(user.lengthOfInvestment);
                 this.ageToSaveTextView.setText(String.valueOf(user.lengthOfInvestment));
             }
@@ -146,6 +149,7 @@ public class UpdateSavingsActivity extends AppCompatActivity {
         this.backButton = (ImageView) findViewById(R.id.backButton);
         this.amountToSaveInput = (EditText) findViewById(R.id.input_contributionAmount);
         this.interestRateInput = (EditText) findViewById(R.id.input_interestRate);
+        this.currentSavings = ( EditText ) findViewById(R.id.input_currentSavings);
         this.ageToSaveTextView = (TextView) findViewById(R.id.lengthOfInvestmentSelected);
         this.ageToSaveToInput = (SeekBar) findViewById(R.id.input_durationSeekBar);
         this.updateSettingsButton = (Button) findViewById(R.id.button_update);
@@ -206,6 +210,29 @@ public class UpdateSavingsActivity extends AppCompatActivity {
             }
         });
 
+        this.currentSavings.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                user.currentSavings = Double.valueOf(charSequence.toString());
+                if( !charSequence.toString().isEmpty() ) {
+                    setClickableUpdateButton(true);
+                }
+                else {
+                    setClickableUpdateButton(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         this.ageToSaveToInput.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -235,7 +262,8 @@ public class UpdateSavingsActivity extends AppCompatActivity {
                             user.savingRate,
                             user.contributionAmount,
                             user.interstRate,
-                            user.lengthOfInvestment
+                            user.lengthOfInvestment,
+                            user.currentSavings
                     );
                     runOnUiThread(new Runnable(){
 

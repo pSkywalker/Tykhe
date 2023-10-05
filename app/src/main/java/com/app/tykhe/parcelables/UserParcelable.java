@@ -3,12 +3,10 @@ package com.app.tykhe.parcelables;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.ColumnInfo;
-import androidx.room.PrimaryKey;
-
+import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.misc.SavingRateEnum;
 
-public class UserParcelables implements Parcelable {
+public class UserParcelable implements Parcelable {
 
     public int pk;
     public int user_id;
@@ -20,6 +18,26 @@ public class UserParcelables implements Parcelable {
     public Integer lengthOfInvestment;
     public Double currentSavings;
 
+
+    public UserParcelable(User entityUser) {
+        // Map properties from entityReminder to this object
+        this.savingRate = entityUser.savingRate;
+        this.contributionAmount = entityUser.contributionAmount;
+        this.interstRate = entityUser.interstRate;
+        this.lengthOfInvestment = entityUser.lengthOfInvestment;
+        this.currentSavings = entityUser.currentSavings;
+    }
+    public User getUserEntityFromParcelable(){
+        User user = new User();
+
+        user.savingRate = this.savingRate;
+        user.contributionAmount = this.contributionAmount;
+        user.interstRate = this.interstRate;
+        user.lengthOfInvestment = this.lengthOfInvestment;
+        user.currentSavings = this.currentSavings;
+
+        return user;
+    }
 
 
     @Override
@@ -40,7 +58,8 @@ public class UserParcelables implements Parcelable {
         dest.writeValue(currentSavings);
     }
 
-    protected UserParcelables(Parcel in) {
+
+    protected UserParcelable(Parcel in) {
         pk = in.readInt();
         user_id = in.readInt();
         name = in.readString();
@@ -52,15 +71,15 @@ public class UserParcelables implements Parcelable {
         currentSavings = (Double) in.readValue(Double.class.getClassLoader());
     }
 
-    public static final Creator<UserParcelables> CREATOR = new Creator<UserParcelables>() {
+    public static final Creator<UserParcelable> CREATOR = new Creator<UserParcelable>() {
         @Override
-        public UserParcelables createFromParcel(Parcel in) {
-            return new UserParcelables(in);
+        public UserParcelable createFromParcel(Parcel in) {
+            return new UserParcelable(in);
         }
 
         @Override
-        public UserParcelables[] newArray(int size) {
-            return new UserParcelables[size];
+        public UserParcelable[] newArray(int size) {
+            return new UserParcelable[size];
         }
     };
 }
