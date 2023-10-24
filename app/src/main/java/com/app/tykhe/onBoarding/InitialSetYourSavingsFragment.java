@@ -183,7 +183,9 @@ public class InitialSetYourSavingsFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                onBoardingViewModel.setInterestRate( editable.toString() );
+                if( !editable.toString().isEmpty() ) {
+                    onBoardingViewModel.setInterestRate(editable.toString());
+                }
             }
         });
 
@@ -200,7 +202,9 @@ public class InitialSetYourSavingsFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                onBoardingViewModel.setCurrentSavings( Double.parseDouble( editable.toString() ) );
+                if( !editable.toString().isEmpty() ) {
+                    onBoardingViewModel.setCurrentSavings(Double.parseDouble(editable.toString()));
+                }
             }
         });
 

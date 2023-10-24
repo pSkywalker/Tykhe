@@ -49,8 +49,13 @@ public class Repo {
                 onBoarding.currentSavings
         );
     }
+
     public int updateCurrentSavings( double newCurrent ){
         return this.userDao.updateCurrentSavings( newCurrent );
+    }
+
+    public int updateSavingRate ( SavingRateEnum.savingRate savingRate ){
+        return this.userDao.updateSavingRate( savingRate );
     }
 
     public void createUser( ){

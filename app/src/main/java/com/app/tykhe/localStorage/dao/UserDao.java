@@ -27,6 +27,13 @@ public interface UserDao {
             "where user_id = 1" )
     int updateUser( String name, Integer age );
 
+    @Query( "update user " +
+            "set " +
+            "savingRate = :savingRate " +
+            "where user_id = 1")
+    int updateSavingRate(
+        SavingRateEnum.savingRate savingRate
+    );
 
     @Query("update user " +
             "set " +

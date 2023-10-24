@@ -163,8 +163,14 @@ public class HomeActivity extends AppCompatActivity {
         this.repo.getUser().observe( this, user -> {
             try {
                 this.user = user.get(0);
+                if ( this.user.name == null
+                        ||
+                     this.user.lengthOfInvestment == null
+                ) {
+                    throw new IndexOutOfBoundsException();
+                }
                 this.repo.getAllSavingItems().observe( this, savingItemLists -> {
-                    Log.d( "savingItems", String.valueOf( savingItemLists.get(0).SavingItemAmounts ) );
+                    //Log.d( "savingItems", String.valueOf( savingItemLists.get(0).SavingItemAmounts ) );
                         if (savingItemLists.isEmpty()) {
                             savingItemsViewPager.setCurrentItem(1);
                         } else {
@@ -184,7 +190,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                     //Log.d( "asdf", String.valueOf( this.user.currentSavings ) + " " + String.valueOf( amountToAddToTotal));
-                    this.currentSavingsDisplay.setText( "$" + new DecimalFormat("#,##0.###").format(this.user.currentSavings + amountToAddToTotal) );
+                    this.currentSavingsDisplay.setText("$" + new DecimalFormat("#,##0.###").format(this.user.currentSavings + amountToAddToTotal));
 
                     double totalReocurringSavings = 0;
                     switch( this.user.savingRate ) {
@@ -199,8 +205,10 @@ public class HomeActivity extends AppCompatActivity {
                             break;
                     }
                     double estimatedTotal = this.user.currentSavings + totalReocurringSavings;
-                    estimatedTotal = ( estimatedTotal *= this.user.interstRate ) + estimatedTotal;
-                    this.totalSavingsDisplay.setText( String.valueOf( new DecimalFormat("#,##0.###").format( estimatedTotal ) ) );
+                    double intrestRate = ( estimatedTotal * ( this.user.interstRate/100) );
+                    estimatedTotal = estimatedTotal + intrestRate;
+                    Log.d( "intrestrate", String.valueOf( intrestRate));
+                    this.totalSavingsDisplay.setText(  "$" + String.valueOf( new DecimalFormat("#,##0.###").format( estimatedTotal ) ) );
                 });
 
                 this.setView();
@@ -267,7 +275,7 @@ public class HomeActivity extends AppCompatActivity {
         this.interestRateDisplay.setText( String.valueOf(this.user.interstRate) + "%" );
         this.contributionTypeDisplay.setText( "Savings " + this.user.savingRate );
         this.contributionAmountDisplay.setText( "$" + new DecimalFormat("#,##0.###").format(this.user.contributionAmount)  );
-        this.ageDisplay.setText( String.valueOf( this.user.age ) );
+        this.ageDisplay.setText( String.valueOf( this.user.lengthOfInvestment ) );
 
     }
 

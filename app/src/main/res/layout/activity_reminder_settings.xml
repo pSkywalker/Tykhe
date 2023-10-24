@@ -6,15 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".ReminderSettingsActivity">
 
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+
+    <TextView
+        android:id="@+id/screenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/gilroy_semi_bold"
+        android:textColor="@color/black"
+        android:text="@string/reminder_title"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/savingRateWrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="46dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/screenTitle">
 
         <!--
         <ImageView
@@ -31,6 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/gilroy_medium"
             android:text="@string/reminders_saving_type_title"
             android:textColor="@color/black"
             android:textSize="18dp" />
@@ -40,7 +66,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+
+            android:fontFamily="@font/gilroy_medium"
             android:textColor="@color/black"
+
             android:textSize="18dp" />
 
         <ImageView
@@ -94,6 +123,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/reminders_savings_reminder"
+                        android:fontFamily="@font/gilroy_medium"
+
                         android:textColor="@color/black" />
 
                     <TextView
@@ -101,6 +132,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
+                        android:fontFamily="@font/gilroy_semi_bold"
+
                         android:textSize="30dp" />
 
                 </LinearLayout>
@@ -108,7 +141,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
+                    <!--
                     <com.suke.widget.SwitchButton
                         android:id="@+id/reminderStatusToggle"
                         android:layout_width="wrap_content"
@@ -117,7 +150,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:sb_checked_color="@color/black"
                         app:sb_uncheck_color="@color/white" />
-
+                       -->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
@@ -137,6 +170,8 @@
                 android:id="@+id/freqText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/gilroy_medium"
+
                 android:textColor="@color/black" />
         </LinearLayout>
 
@@ -149,6 +184,7 @@
 
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:fontFamily="@font/gilroy_medium"
 
         android:layout_marginBottom="32dp"
         android:background="@drawable/on_boarding_button_white"

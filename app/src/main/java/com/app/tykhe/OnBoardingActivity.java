@@ -41,6 +41,12 @@ public class OnBoardingActivity extends AppCompatActivity {
     private User user = null;
 
     @Override
+    public void onBackPressed() {
+        // Do nothing (disable the back button)
+        // You can also show a message or take any other action here
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
         super.onCreate(savedInstanceState);

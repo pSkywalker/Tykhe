@@ -68,13 +68,18 @@ public class SavingItemsSpawner extends LifecycleService {
     @RequiresApi(Build.VERSION_CODES.O)
     private void startMyOwnForeground()
     {
+        Log.d("asdf", "asdf");
         this.repo = new Repo( getApplication() );
 
         repo.getReminder().observe(this, reminder -> {
-            this.reminder = reminder.get( 0 );
+            if( !reminder.isEmpty() ) {
+                this.reminder = reminder.get(0);
+            }
         });
         repo.getUser().observe( this, user -> {
-            this.user = user.get( 0 );
+            if (!user.isEmpty() ) {
+                this.user = user.get(0);
+            }
         });
     }
 
@@ -83,19 +88,31 @@ public class SavingItemsSpawner extends LifecycleService {
     private int counter = 0;
     public void startTimer() {
         timer = new Timer();
+        this.repo = new Repo( getApplication() );
+        repo.getReminder().observe(this, reminder -> {
+            if( !reminder.isEmpty() ) {
+                this.reminder = reminder.get(0);
+            }
+        });
+        repo.getUser().observe( this, user -> {
+            if( !user.isEmpty()) {
+                this.user = user.get(0);
+            }
+        });
         timerTask = new TimerTask() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
+                Log.i("Count", "=========  " + (counter++) + " " + String.valueOf( reminder ) );
+                if (reminder != null && user != null) {
 
-                    Log.i("Count", "=========  " + (counter++) + reminder.chosenType);
 
                     Calendar currentDate = Calendar.getInstance();
-                    currentDate.set(Calendar.DAY_OF_WEEK, currentDate.get(Calendar.DAY_OF_WEEK) - 1);
 
+                    Log.d("asdf",  String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH)));
 
                     try {
                         //List<Reminder> reminder = repo.getReminder().getValue();
-                        Log.d( "asdf", reminder.time);
+                        Log.d("asdf", reminder.chosenType);
                         if (reminder.status) {
                             switch (reminder.chosenType) {
                                 case "weekly":
@@ -106,7 +123,7 @@ public class SavingItemsSpawner extends LifecycleService {
                                         Calendar eventCalendar = Calendar.getInstance();
                                         eventCalendar.set(Calendar.DAY_OF_WEEK, reminder.weeklyChoonenDay);
                                         eventCalendar.set(Calendar.HOUR, date.getHours());
-                                        eventCalendar.set( Calendar.MINUTE, date.getMinutes() );
+                                        eventCalendar.set(Calendar.MINUTE, date.getMinutes());
                                         //eventCalendar.setTime(date);
                                         //Log.d( "asdf",String.valueOf( eventCalendar.get(Calendar.DAY_OF_WEEK) ) + " " + String.valueOf( currentDate.get(Calendar.DAY_OF_WEEK) ) );
 
@@ -117,15 +134,13 @@ public class SavingItemsSpawner extends LifecycleService {
                                                         &&
                                                         eventCalendar.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
                                         ) {
-                                            if( currentDate.get( Calendar.SECOND ) == 1 ) {
+                                            if (currentDate.get(Calendar.SECOND) == 1) {
                                                 sendNotification();
+                                            } else {
+                                                Log.d("asdf", "calendar already sent");
                                             }
-                                            else {
-                                                Log.d( "asdf", "calendar already sent" );
-                                            }
-                                        }
-                                        else{
-                                            Log.d( "asdf",String.valueOf( eventCalendar.get(Calendar.MINUTE) ) + " " + String.valueOf( currentDate.get(Calendar.MINUTE) ) );
+                                        } else {
+                                            Log.d("asdf", String.valueOf(eventCalendar.get(Calendar.DAY_OF_WEEK)) + " " + String.valueOf(currentDate.get(Calendar.DAY_OF_WEEK)));
                                         }
 
                                     } catch (Exception ex) {
@@ -138,17 +153,17 @@ public class SavingItemsSpawner extends LifecycleService {
                                         Date date = dateFormat.parse(reminder.time);
 
                                         Calendar firstOccurrence = (Calendar) currentDate.clone();
-                                        firstOccurrence.set(Calendar.DAY_OF_MONTH, reminder.biweeklyChosenDay );
+                                        firstOccurrence.set(Calendar.DAY_OF_MONTH, reminder.biweeklyChosenDay);
                                         firstOccurrence.set(Calendar.HOUR, date.getHours());
-                                        firstOccurrence.set( Calendar.MINUTE,  date.getMinutes() );
+                                        firstOccurrence.set(Calendar.MINUTE, date.getMinutes());
                                         // Calculate the second occurrence by adding 7 days to the first occurrence
                                         Calendar secondOccurrence = (Calendar) firstOccurrence.clone();
 
-                                        secondOccurrence.set(Calendar.DAY_OF_MONTH, reminder.biweeklyChosenDay + 14 );
+                                        secondOccurrence.set(Calendar.DAY_OF_MONTH, reminder.biweeklyChosenDay + 14);
 
-                                            //secondOccurrence.setTime(date);
+                                        //secondOccurrence.setTime(date);
                                         secondOccurrence.set(Calendar.HOUR, date.getHours());
-                                        secondOccurrence.set( Calendar.MINUTE,  date.getMinutes() );
+                                        secondOccurrence.set(Calendar.MINUTE, date.getMinutes());
                                         if (
                                                 (
                                                         firstOccurrence.get(Calendar.DAY_OF_MONTH) == currentDate.get(Calendar.DAY_OF_MONTH)
@@ -156,26 +171,52 @@ public class SavingItemsSpawner extends LifecycleService {
                                                                 && firstOccurrence.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
                                                 )
                                                         ||
-                                                //currentDate.get(Calendar.DAY_OF_MONTH) < reminder.biweeklyChosenDay + 14
-                                               // &&
-                                                (
-                                                        secondOccurrence.get(Calendar.DAY_OF_MONTH) == currentDate.get(Calendar.DAY_OF_MONTH)
-                                                        && secondOccurrence.get(Calendar.HOUR) == currentDate.get(Calendar.HOUR)
-                                                        && secondOccurrence.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
+                                                        //currentDate.get(Calendar.DAY_OF_MONTH) < reminder.biweeklyChosenDay + 14
+                                                        // &&
+                                                        (
+                                                                secondOccurrence.get(Calendar.DAY_OF_MONTH) == currentDate.get(Calendar.DAY_OF_MONTH)
+                                                                        && secondOccurrence.get(Calendar.HOUR) == currentDate.get(Calendar.HOUR)
+                                                                        && secondOccurrence.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
                                                         )
                                         ) {
-                                            if( currentDate.get( Calendar.SECOND ) == 1 ) {
+                                            if (currentDate.get(Calendar.SECOND) == 1) {
                                                 sendNotification();
+                                            } else {
+                                                Log.d("asdf", "calendar already sent");
                                             }
-                                            else {
-                                                Log.d( "asdf", "calendar already sent" );
-                                            }
-                                        }
-                                        else {
-                                            Log.d("asdf",String.valueOf(reminder.biweeklyChosenDay)+""+String.valueOf( secondOccurrence.get(Calendar.DAY_OF_MONTH)) +" "+ String.valueOf( currentDate.get(Calendar.DAY_OF_MONTH) ));
+                                        } else {
+                                            Log.d("asdf", String.valueOf(reminder.biweeklyChosenDay) + "" + String.valueOf(secondOccurrence.get(Calendar.DAY_OF_MONTH)) + " " + String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH)));
                                         }
 
 
+                                    } catch (Exception ex) {
+                                    }
+                                    break;
+                                case "monthly":
+                                    try {
+                                        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a", Locale.US);
+                                        Date date = dateFormat.parse(reminder.time);
+
+                                        Calendar eventCalendar = Calendar.getInstance();
+                                        eventCalendar.set(Calendar.DAY_OF_MONTH, reminder.monthlyChosenDay );
+                                        eventCalendar.set(Calendar.HOUR, date.getHours());
+                                        eventCalendar.set(Calendar.MINUTE, date.getMinutes());
+
+                                        if (
+                                                eventCalendar.get(Calendar.DAY_OF_MONTH) == currentDate.get(Calendar.DAY_OF_MONTH)
+                                                        &&
+                                                        eventCalendar.get(Calendar.HOUR) == currentDate.get(Calendar.HOUR)
+                                                        &&
+                                                        eventCalendar.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
+                                        ) {
+                                            if (currentDate.get(Calendar.SECOND) == 1) {
+                                                sendNotification();
+                                            } else {
+                                                Log.d("asdf", "calendar already sent");
+                                            }
+                                        } else {
+                                            Log.d("asdf", String.valueOf(eventCalendar.get(Calendar.DAY_OF_MONTH)) + " " + String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH)));
+                                        }
                                     } catch (Exception ex) {
                                     }
                                     break;
@@ -185,9 +226,9 @@ public class SavingItemsSpawner extends LifecycleService {
                                         Date date = dateFormat.parse(reminder.time);
 
                                         Calendar eventCalendar = Calendar.getInstance();
-                                        eventCalendar.set(Calendar.DAY_OF_MONTH, reminder.monthlyChosenDay - 1);
+                                        eventCalendar.set(Calendar.DAY_OF_MONTH, reminder.monthlyChosenDay );
                                         eventCalendar.set(Calendar.HOUR, date.getHours());
-                                        eventCalendar.set( Calendar.MINUTE, date.getMinutes() );
+                                        eventCalendar.set(Calendar.MINUTE, date.getMinutes());
 
                                         if (
                                                 eventCalendar.get(Calendar.DAY_OF_MONTH) == currentDate.get(Calendar.DAY_OF_MONTH)
@@ -196,26 +237,28 @@ public class SavingItemsSpawner extends LifecycleService {
                                                         &&
                                                         eventCalendar.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
                                         ) {
-                                            if( currentDate.get( Calendar.SECOND ) == 1 ) {
+                                            if (currentDate.get(Calendar.SECOND) == 1) {
                                                 sendNotification();
+                                            } else {
+                                                Log.d("asdf", "calendar already sent");
                                             }
-                                            else {
-                                                Log.d( "asdf", "calendar already sent" );
-                                            }
-                                        }
-                                        else {
-                                            Log.d("asdf" ,String.valueOf(eventCalendar.get(Calendar.DAY_OF_MONTH)) +" " +String.valueOf( currentDate.get(Calendar.DAY_OF_MONTH)) );
+                                        } else {
+                                            Log.d("asdf", String.valueOf(eventCalendar.get(Calendar.DAY_OF_MONTH)) + " " + String.valueOf(currentDate.get(Calendar.DAY_OF_MONTH)));
                                         }
                                     } catch (Exception ex) {
                                     }
                                     break;
                             }
                         }
-                    }catch( NullPointerException ex ) {Log.d("asdf", "reminder not found");}
+                    } catch (NullPointerException ex) {
+                        Log.d("asdf", "reminder not found");
+                    }
 
+                }
             }
-            };
 
+            ;
+        };
         timer.schedule(timerTask, 1000, 1000); //
     }
 

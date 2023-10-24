@@ -21,6 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@string/reminders_monthly_selection_title"
+            android:fontFamily="@font/gilroy_medium"
+
             android:textColor="@color/black"
             android:textSize="18dp" />
 
@@ -48,6 +50,8 @@
                 <TextView
                     android:id="@+id/selectedMonthlyDate"
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/gilroy_semi_bold"
+
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="18dp"
@@ -77,6 +81,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/gilroy_medium"
+
             android:text="@string/reminders_time_choosing_title"
             android:textColor="@color/black" />
 
@@ -94,6 +100,8 @@
 
                 <TextView
                     android:id="@+id/selectedTimeOfDay"
+                    android:fontFamily="@font/gilroy_semi_bold"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black" />

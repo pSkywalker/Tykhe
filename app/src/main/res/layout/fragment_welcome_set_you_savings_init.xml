@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
 
+            android:layout_marginTop="24dp"
             android:onClick="@{ (view) -> onBoardingForm.previousPage() }"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,9 +30,11 @@
             android:id="@+id/screenTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="@string/setup_savings_title"
             android:textAlignment="center"
             android:textSize="20dp"
+            android:fontFamily="@font/gilroy_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="72dp"
             android:text="@string/setup_savings_saving_rate"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +83,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/weekly" />
+                    android:text="@string/weekly"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroy_medium"
+                    />
 
             </LinearLayout>
 
@@ -105,7 +111,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/biWeekly" />
+                    android:text="@string/biWeekly"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroy_medium"
+                    />
 
             </LinearLayout>
 
@@ -129,7 +138,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/monthly" />
+                    android:text="@string/monthly"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroy_medium"
+                    />
 
             </LinearLayout>
         </com.google.android.flexbox.FlexboxLayout>
@@ -170,7 +182,7 @@
                 app:backgroundTint="@color/on_boarding_edit_text_underline_color"
 
                 android:drawableLeft="@drawable/money_sign"
-
+                android:fontFamily="@font/gilroy_medium"
 
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -196,6 +208,8 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:text="@string/suggested"
+                android:textColor="@color/black"
+                android:fontFamily="@font/gilroy_medium"
                 tools:layout_editor_absoluteX="15dp" />
 
             <LinearLayout
@@ -218,6 +232,8 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroy_medium"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -243,6 +259,8 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroy_medium"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -267,6 +285,8 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/gilroy_medium"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -279,6 +299,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="335dp"
             android:text="@string/setup_annual_interest_rate"
+            android:textColor="@color/black"
+            android:fontFamily="@font/gilroy_medium"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -308,6 +330,7 @@
                 android:paddingLeft="10dp"
                 android:textCursorDrawable="@drawable/edit_text_cursor_color"
 
+                android:fontFamily="@font/gilroy_medium"
                 app:backgroundTint="@color/on_boarding_edit_text_underline_color"
 
 
@@ -334,6 +357,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/setup_length_of_investment"
+                android:textColor="@color/black"
+                android:fontFamily="@font/gilroy_medium"
                 android:textSize="18dp" />
 
             <TextView
@@ -341,7 +366,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@={``+onBoardingForm.accountOnBoarding.lengthOfInvestment}"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/gilroy_medium"
+                />
 
         </com.google.android.flexbox.FlexboxLayout>
 
@@ -376,6 +404,8 @@
             android:layout_marginTop="40dp"
             android:text="@string/setup_current_savings"
             android:textSize="17dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/gilroy_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/seekBarWrapper"
             />
@@ -397,7 +427,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-
+                android:fontFamily="@font/gilroy_medium"
                 android:hint="@string/setup_savings_zero"
                 android:maxLines="1"
                 android:paddingBottom="20dp"
@@ -421,7 +451,7 @@
             android:layout_marginEnd="32dp"
 
             android:layout_marginBottom="32dp"
-
+            android:fontFamily="@font/gilroy_medium"
             android:background="@drawable/on_boarding_button_black"
 
             android:text="@string/start"

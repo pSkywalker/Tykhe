@@ -15,6 +15,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/gilroy_semi_bold"
         android:textColor="@color/black"
         android:textSize="18dp"
         android:text="@string/reminders_weekly_biweekly_title"

@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
 
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
@@ -22,9 +23,13 @@
             android:id="@+id/screenTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="@string/settings_savings_update_title"
             android:textAlignment="center"
             android:textSize="20dp"
+            android:fontFamily="@font/gilroy_medium"
+            android:textColor="@color/black"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,9 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="72dp"
             android:text="@string/setup_savings_saving_rate"
             android:textSize="17dp"
+            android:fontFamily="@font/gilroy_medium"
+            android:textColor="@color/black"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,6 +81,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:textColor="@color/black"
+
                     android:text="@string/weekly" />
 
             </LinearLayout>
@@ -98,6 +109,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroy_medium"
+
+                    android:textColor="@color/black"
                     android:text="@string/biWeekly" />
 
             </LinearLayout>
@@ -121,6 +135,9 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:textColor="@color/black"
+
                     android:layout_height="wrap_content"
                     android:text="@string/monthly" />
 
@@ -134,6 +151,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="175dp"
             android:text="@string/setup_savings_monthly_contributions"
+            android:fontFamily="@font/gilroy_medium"
+            android:textColor="@color/black"
+
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -187,6 +207,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/gilroy_medium"
+                android:textColor="@color/black"
+
                 android:paddingTop="5dp"
                 android:text="@string/suggested"
                 tools:layout_editor_absoluteX="15dp" />
@@ -211,6 +234,9 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:textColor="@color/black"
+
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -236,6 +262,9 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:textColor="@color/black"
+
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -260,6 +289,9 @@
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:textColor="@color/black"
+
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -270,6 +302,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/gilroy_medium"
+            android:textColor="@color/black"
+
             android:layout_marginTop="335dp"
             android:text="@string/setup_annual_interest_rate"
             android:textSize="17dp"
@@ -326,11 +361,17 @@
                 android:id="@+id/lengthOfInvestmentTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/gilroy_medium"
+                android:textColor="@color/black"
+
                 android:text="@string/setup_length_of_investment"
                 android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/lengthOfInvestmentSelected"
+                android:fontFamily="@font/gilroy_medium"
+                android:textColor="@color/black"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp" />
@@ -365,6 +406,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
+            android:fontFamily="@font/gilroy_medium"
+            android:textColor="@color/black"
             android:text="@string/setup_current_savings"
             android:textSize="17dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -389,6 +432,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
 
+                android:fontFamily="@font/gilroy_medium"
+
+
                 android:hint="@string/setup_savings_zero"
                 android:maxLines="1"
                 android:paddingBottom="20dp"
@@ -411,6 +457,9 @@
 
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+
+            android:fontFamily="@font/gilroy_medium"
+
 
             android:layout_marginBottom="32dp"
 

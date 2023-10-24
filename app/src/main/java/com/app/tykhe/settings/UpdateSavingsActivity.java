@@ -172,8 +172,8 @@ public class UpdateSavingsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                user.contributionAmount = Double.valueOf ( charSequence.toString() );
                 if ( !charSequence.toString().isEmpty() ) {
+                    user.contributionAmount = Double.valueOf ( charSequence.toString() );
                     setClickableUpdateButton(true);
                 }
                 else {
@@ -195,8 +195,8 @@ public class UpdateSavingsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                user.interstRate = Double.valueOf(charSequence.toString());
                 if( !charSequence.toString().isEmpty() ) {
+                    user.interstRate = Double.valueOf(charSequence.toString());
                     setClickableUpdateButton(true);
                 }
                 else {

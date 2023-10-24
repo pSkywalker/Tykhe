@@ -1,5 +1,6 @@
 package com.app.tykhe.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.app.tykhe.HomeActivity;
+import com.app.tykhe.OnBoardingActivity;
 import com.app.tykhe.R;
 import com.app.tykhe.adapters.SavingItemAdapter;
 import com.app.tykhe.localStorage.Repo;
@@ -103,9 +106,13 @@ public class SavingItemsFragment extends Fragment {
 
         this.savingItemsSavingRate = view.findViewById(R.id.savingItemsSavingRate);
 
-
-        this.savingItemsSavingRate.setText( this.user.savingRate.toString() );
-
+        try {
+            this.savingItemsSavingRate.setText(this.user.savingRate.toString());
+        }
+        catch( NullPointerException ex ){
+            Intent onBoardingActivityIntent = new Intent( getActivity(), OnBoardingActivity.class );
+            startActivity( onBoardingActivityIntent );
+        }
 
         this.savingItemsRecyclerView = ( RecyclerView) view.findViewById(R.id.savingItems);
 

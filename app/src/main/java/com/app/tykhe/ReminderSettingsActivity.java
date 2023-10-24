@@ -9,17 +9,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.Reminder;
+import com.app.tykhe.misc.SavingRateEnum;
 import com.app.tykhe.reminder.BiWeeklyRemindersFragment;
 import com.app.tykhe.reminder.MonthlyRemindersFragment;
 import com.app.tykhe.reminder.WeeklyRemindersFragment;
@@ -43,6 +46,9 @@ public class ReminderSettingsActivity extends AppCompatActivity {
     private Reminder reminder = null;
 
     private ReminderDataViewModel reminderViewModel;
+
+
+    private ImageView backButton;
 
     private LinearLayout savingRateChoser;
     private TextView savingRateChosenItem;
@@ -68,6 +74,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
         this.savingRateChoser = (LinearLayout) findViewById(R.id.savingRateWrapper);
         this.savingRateChosenItem = (TextView) findViewById(R.id.chosenSavingRate);
 
+        this.backButton = (ImageView) findViewById(R.id.backButton);
         this.typeOfSavingFlow = (ViewPager2) findViewById(R.id.typeOfSavingFlow);
 
         this.typeOfSavingFlow.setUserInputEnabled(( false ));
@@ -75,7 +82,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
         this.typeOfSavingFlow.setAdapter( this.pageAdapter );
 
         this.timeOfReminderTextView = (TextView) findViewById(R.id.timeOfReminderTextView);
-        this.reminderStatusToggle = (com.suke.widget.SwitchButton) findViewById(R.id.reminderStatusToggle);
+        //this.reminderStatusToggle = (com.suke.widget.SwitchButton) findViewById(R.id.reminderStatusToggle);
         this.freqText = ( TextView) findViewById(R.id.freqText);
 
         this.saveChangesButton = (Button) findViewById(R.id.saveChangesButton);
@@ -120,11 +127,19 @@ public class ReminderSettingsActivity extends AppCompatActivity {
                 showPopupMenu( view );
             }
         });
-
+        /*
         this.reminderStatusToggle.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 reminder.status = isChecked;
+            }
+        });
+        */
+        this.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent updateIntent = new Intent( ReminderSettingsActivity.this, HomeActivity.class);
+                startActivity(updateIntent);
             }
         });
 
@@ -133,6 +148,19 @@ public class ReminderSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 repo.updateReminder(reminder);
+
+                SavingRateEnum.savingRate newSavingRate = SavingRateEnum.savingRate.Weekly;
+                if( reminder.chosenType == "weekly" ) {
+                    newSavingRate = SavingRateEnum.savingRate.Weekly;
+                }
+                else if( reminder.chosenType == "biweekly" ) {
+                    newSavingRate = SavingRateEnum.savingRate.Biweekly;
+                }
+                else if( reminder.chosenType == "Monthly" ) {
+                    newSavingRate = SavingRateEnum.savingRate.Monthly;
+                }
+
+                repo.updateSavingRate( newSavingRate );
                 Toast.makeText(ReminderSettingsActivity.this, "Reminder updated", Toast.LENGTH_LONG).show();
             }
         });
@@ -143,7 +171,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
 
     public void setView(){
         this.timeOfReminderTextView.setText(this.reminder.time);
-        this.reminderStatusToggle.setChecked(this.reminder.status);
+//        this.reminderStatusToggle.setChecked(this.reminder.status);
         switch (this.reminder.chosenType) {
             case "weekly":
                 this.freqText.setText("frequency: Weekly");

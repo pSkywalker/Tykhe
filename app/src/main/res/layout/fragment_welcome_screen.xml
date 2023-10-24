@@ -39,6 +39,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:fontFamily="@font/gilroy_light"
             app:layout_constraintBottom_toTopOf="@+id/BEGIN"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -56,6 +57,7 @@
             android:onClick="@{(view) -> onBoardingForm.nextPage()}"
             android:text="@string/welcome_button"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:fontFamily="@font/gilroy_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

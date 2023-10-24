@@ -64,6 +64,8 @@
     <string name="settings_update">Save changes</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+
+    <string name="reminder_title"> Reminder </string>
     <string name="reminders_saving_type_title">Saving rate: </string>
 
     <string name="reminders_weekly_biweekly_title">Repeat</string>
@@ -98,12 +100,12 @@
     <string name="home_screen_saving_item_btn_overdue"> OVERDUE </string>
 
 
-
-
-
-
-
     <string name="notification_title">Time to save</string>
     <string name="notification_text">Open Tykhe to start saving!</string>
 
+
+    <string name="privacy_policy_title">Privacy Policy</string>
+
+    <string name="terms_of_service_title">Terms of Service</string>
+    <string name="terms_of_service_link_text">Click here to view the terms of service.</string>
 </resources>
