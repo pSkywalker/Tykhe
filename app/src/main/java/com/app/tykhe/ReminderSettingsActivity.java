@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.Reminder;
@@ -132,6 +133,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 repo.updateReminder(reminder);
+                Toast.makeText(ReminderSettingsActivity.this, "Reminder updated", Toast.LENGTH_LONG).show();
             }
         });
 

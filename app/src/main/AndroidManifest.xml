@@ -5,11 +5,15 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+    <meta-data
+        android:name="com.tykhe.notification"
+        android:resource="@xml/notification_channel" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tykhe.Spashscreen.Main">
 

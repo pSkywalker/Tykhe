@@ -20,33 +20,55 @@ import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.misc.CurrentSavingsWrapper;
 import com.app.tykhe.viewModels.CurrentSavingsUpdater_ViewModel;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.SavingItemViewHolder> {
+
 
     private List<SavingItem> savingItemList;
     private Repo repo;
     private Application app;
     private User user;
     private CurrentSavingsUpdater_ViewModel currentSavingsUpdater_viewModel;
+    Comparator<SavingItem> dateComparator;
+    SimpleDateFormat dateFormat;
 
     public SavingItemAdapter( Application application ){
         this.savingItemList = new ArrayList<SavingItem>();
         this.repo = new Repo( application );
         this.app = application;
+        this.dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        this.dateComparator = (entry1, entry2) -> {
+            try {
+                Date date1 = dateFormat.parse(entry1.SavingItmeDate);
+                Date date2 = dateFormat.parse(entry2.SavingItmeDate);
+                return date2.compareTo(date1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0; // Handle parsing errors
+            }
+        };
     }
 
     public void updateData( List< SavingItem > data ){
         this.savingItemList = data;
+        // Sort the list using the custom comparator
+        Collections.sort(this.savingItemList, dateComparator);
         this.notifyDataSetChanged();
     }
     public void updateData ( List<SavingItem> data, User user ){
         this.savingItemList = data;
         this.user = user;
+        Collections.sort(this.savingItemList, dateComparator);
         this.notifyDataSetChanged();
     }
 
