@@ -108,4 +108,10 @@
 
     <string name="terms_of_service_title">Terms of Service</string>
     <string name="terms_of_service_link_text">Click here to view the terms of service.</string>
+
+    <string name="contact_us_title">Contact Us</string>
+    <string name="contact_us_email_title">Our email address!</string>
+    <string name="contact_us_email">boraniev@outlook.com</string>
+    <string name="or_send_us_an_email"> Or send us an email! </string>
+    <string name="send_email"> Send email </string>
 </resources>

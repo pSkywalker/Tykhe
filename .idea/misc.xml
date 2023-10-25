@@ -10,6 +10,7 @@
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/app_logo_background.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/borderless_button.xml" value="0.1" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/card_view_border.xml" value="0.1135" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/contact_us_edit_text.xml" value="0.1135" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/custom_seek_bar.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/custom_seek_bar_thumb.xml" value="0.1745" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/drawable/edit_saving_rate.xml" value="0.1" />
@@ -42,6 +43,7 @@
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/font/gilroy_regular.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/font/gilroy_semi_bold.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/font/gilroy_thin.xml" value="0.19166666666666668" />
+        <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_contact_us.xml" value="0.18" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_on_boarding.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/16472/AndroidStudioProjects/Tykhe/app/src/main/res/layout/activity_privacy_policy.xml" value="0.1" />

@@ -115,7 +115,9 @@ public class Repo {
     public void createSavingItem(SavingItem savingItem){
         this.savingItemDao.insert( savingItem );
     }
-
+    public void deleteSavingItem( SavingItem savingItem){
+        this.savingItemDao.deleteSavingItem( savingItem );
+    }
     public LiveData<List<SavingItem>> getAllSavingItems(){
         return this.savingItemDao.getSavingItems();
     }

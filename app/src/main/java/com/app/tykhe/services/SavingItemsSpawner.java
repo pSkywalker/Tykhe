@@ -26,6 +26,7 @@ import com.app.tykhe.localStorage.entities.User;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +46,7 @@ public class SavingItemsSpawner extends LifecycleService {
 
     private Reminder reminder;
     private User user;
+    private List<SavingItem> savingItems = new ArrayList<>();
     public void setReminder( Reminder reminder ){
         this.reminder = reminder;
     }
@@ -81,6 +83,11 @@ public class SavingItemsSpawner extends LifecycleService {
                 this.user = user.get(0);
             }
         });
+        this.repo.getAllSavingItems().observe( this, savingItems -> {
+            if( !savingItems.isEmpty() ) {
+                this.savingItems = savingItems;
+            }
+        });
     }
 
     private Timer timer;
@@ -97,6 +104,11 @@ public class SavingItemsSpawner extends LifecycleService {
         repo.getUser().observe( this, user -> {
             if( !user.isEmpty()) {
                 this.user = user.get(0);
+            }
+        });
+        this.repo.getAllSavingItems().observe( this, savingItems -> {
+            if( !savingItems.isEmpty() ) {
+                this.savingItems = savingItems;
             }
         });
         timerTask = new TimerTask() {
@@ -121,7 +133,12 @@ public class SavingItemsSpawner extends LifecycleService {
                                         Date date = dateFormat.parse(reminder.time);
 
                                         Calendar eventCalendar = Calendar.getInstance();
-                                        eventCalendar.set(Calendar.DAY_OF_WEEK, reminder.weeklyChoonenDay);
+                                        if( reminder.weeklyChoonenDay == 7 ) {
+                                            eventCalendar.set(Calendar.DAY_OF_WEEK, 1);
+                                        }
+                                        else {
+                                            eventCalendar.set(Calendar.DAY_OF_WEEK, reminder.weeklyChoonenDay + 1);
+                                        }
                                         eventCalendar.set(Calendar.HOUR, date.getHours());
                                         eventCalendar.set(Calendar.MINUTE, date.getMinutes());
                                         //eventCalendar.setTime(date);
@@ -136,8 +153,9 @@ public class SavingItemsSpawner extends LifecycleService {
                                         ) {
                                             if (currentDate.get(Calendar.SECOND) == 1) {
                                                 sendNotification();
+                                                Log.d( "fdsa", "from switch" );
                                             } else {
-                                                Log.d("asdf", "calendar already sent");
+                                                Log.d("alendar already sent", "calendar already sent");
                                             }
                                         } else {
                                             Log.d("asdf", String.valueOf(eventCalendar.get(Calendar.DAY_OF_WEEK)) + " " + String.valueOf(currentDate.get(Calendar.DAY_OF_WEEK)));
@@ -208,6 +226,8 @@ public class SavingItemsSpawner extends LifecycleService {
                                                         eventCalendar.get(Calendar.HOUR) == currentDate.get(Calendar.HOUR)
                                                         &&
                                                         eventCalendar.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
+                                                        &&
+                                                        eventCalendar.get(Calendar.AM_PM) == currentDate.get(Calendar.AM_PM)
                                         ) {
                                             if (currentDate.get(Calendar.SECOND) == 1) {
                                                 sendNotification();
@@ -236,6 +256,8 @@ public class SavingItemsSpawner extends LifecycleService {
                                                         eventCalendar.get(Calendar.HOUR) == currentDate.get(Calendar.HOUR)
                                                         &&
                                                         eventCalendar.get(Calendar.MINUTE) == currentDate.get(Calendar.MINUTE)
+                                                &&
+                                                        eventCalendar.get(Calendar.AM_PM) == currentDate.get(Calendar.AM_PM)
                                         ) {
                                             if (currentDate.get(Calendar.SECOND) == 1) {
                                                 sendNotification();
@@ -320,15 +342,40 @@ public class SavingItemsSpawner extends LifecycleService {
         notificationManager.notify(1, notificationBuilder.build());
         //startForeground(1 , notificationBuilder.build());
 
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
-        SavingItem savingItem = new SavingItem();
-        savingItem.SavingItemStatus = 1;
-        savingItem.SavingItemAmounts = user.contributionAmount;
-        savingItem.SavingItmeDate = currentDate.format(formatter);
-        repo.createSavingItem( savingItem );
 
+                boolean addANewSavingItem = true;
+                Log.d ( "fdsa", String.valueOf( savingItems.size() ) );
+                for( int x = 0; x < savingItems.size() ; x++  ) {
+                    Log.d( "fdsa" , String.valueOf(new Date().getTime() +" "+  String.valueOf(new Date().getTime() - new Date(savingItems.get(x).SavingItmeDate).getTime()  ) ));
+                    /*new Date().getTime() - new Date(savingItems.get(x).SavingItmeDate).getTime() < 2000*/
+                    Log.d( "fdsa",  String.valueOf( new Date( savingItems.get( x ).SavingItmeDate).getDay() == new Date().getDay() )
+                            +" "+
+                            String.valueOf( new Date( savingItems.get( x ).SavingItmeDate).getYear() == new Date().getYear() )
+                            +" "+
+                            String.valueOf( new Date( savingItems.get( x ).SavingItmeDate).getMonth() == new Date().getMonth() )
+                            + " " +
+                                    String.valueOf( savingItems.get( x ).SavingItemStatus != 1 ));
+                    if(
+                            new Date( savingItems.get( x ).SavingItmeDate).getDay() == new Date().getDay()
+                            &&
+                            new Date( savingItems.get( x ).SavingItmeDate).getYear() == new Date().getYear()
+                            &&
+                            new Date( savingItems.get( x ).SavingItmeDate).getMonth() == new Date().getMonth()
+                            &&
+                            savingItems.get( x ).SavingItemStatus == 1
+                    ) {
+                        addANewSavingItem = false;
+                    }
+                }
+                if( addANewSavingItem  && savingItems.size() > 0 ) {
+                    SavingItem savingItem = new SavingItem();
+                    savingItem.SavingItemStatus = 1;
+                    savingItem.SavingItemAmounts = user.contributionAmount;
+                    savingItem.SavingItmeDate = new Date().toString();
+                    repo.createSavingItem(savingItem);
+                    Log.d( "fdsa", "from send notification");
+                }
 
     }
 

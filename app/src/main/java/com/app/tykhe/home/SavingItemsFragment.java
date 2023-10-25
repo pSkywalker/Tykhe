@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,6 +55,7 @@ public class SavingItemsFragment extends Fragment {
     private RecyclerView.LayoutManager rcyLayoutManager;
 
     private CurrentSavingsUpdater_ViewModel currentSavingsViewModel;
+
 
     private boolean initialLoad = true;
 
@@ -121,7 +123,30 @@ public class SavingItemsFragment extends Fragment {
         this.savingItemsRecyclerView.setAdapter( rcyAdapter );
         this.savingItemsRecyclerView.setLayoutManager( rcyLayoutManager );
 
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                // Handle move events if needed (not used for swipe-to-remove).
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                // Handle swipe events. Here, you remove the swiped item from the list.
+                int position = viewHolder.getAdapterPosition();
+                // Remove the item from your list (e.g., itemList.remove(position)).
+                // Then, notify the adapter of the change.
+                repo.deleteSavingItem( rcyAdapter.savingItemList.get( position ) );
+                rcyAdapter.removeItem(position);
+                rcyAdapter.notifyItemRemoved(position);
+            }
+        };
+
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(savingItemsRecyclerView);
+
+
         MediatorLiveData< Object > repoObserver = new MediatorLiveData<>();
+
         repoObserver.addSource(this.repo.getUser(), new Observer<List<User>>() {
             @Override
             public void onChanged(List<User> users) {

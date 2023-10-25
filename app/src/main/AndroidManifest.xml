@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.tykhe">
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="false"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="false" />
+
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <meta-data
@@ -17,9 +24,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tykhe.Spashscreen.Main">
         <activity
-            android:name=".TermsOfServiceActivity"
+            android:name=".ContactUsActivity"
+            android:exported="false"
             android:theme="@style/Theme.Tykhe"
-            android:exported="false" />
+            />
+        <activity
+            android:name=".TermsOfServiceActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Tykhe" />
         <activity
             android:name=".PrivacyPolicyActivity"
             android:exported="false"

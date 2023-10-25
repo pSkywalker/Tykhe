@@ -2,6 +2,7 @@ package com.app.tykhe.localStorage.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -24,5 +25,8 @@ public interface SavingItemDao {
             "where pk = :savingItemId"
     )
     int updateSavingItemStatus( int newSavingItemStatus, int savingItemId );
+
+    @Delete()
+    void deleteSavingItem(SavingItem savingItem);
 
 }

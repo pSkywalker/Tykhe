@@ -19,12 +19,15 @@ import android.widget.Toast;
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.RoomDatabase;
 import com.app.tykhe.localStorage.dao.UserDao;
+import com.app.tykhe.localStorage.entities.SavingItem;
 import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.models.OnBoarding;
 import com.app.tykhe.onBoarding.InitialSetYourSavingsFragment;
 import com.app.tykhe.viewModels.UserOnBoardingViewModel;
 import com.app.tykhe.onBoarding.InitialAccountInfoSetupFragment;
 import com.app.tykhe.onBoarding.WelcomeFragment;
+
+import java.util.Date;
 
 public class OnBoardingActivity extends AppCompatActivity {
 
@@ -96,6 +99,11 @@ public class OnBoardingActivity extends AppCompatActivity {
                         AsyncTask.execute( () -> {
                             this.repo.updateUser(onBoardingForm);
                             this.repo.createReminder();
+                            SavingItem savingItem = new SavingItem();
+                            savingItem.SavingItemStatus = 1;
+                            savingItem.SavingItemAmounts = onBoardingForm.contributionAmount;
+                            savingItem.SavingItmeDate = new Date().toString();
+                            repo.createSavingItem(savingItem);
                             Intent homeActivityIntent = new Intent( OnBoardingActivity.this, HomeActivity.class );
                             startActivity( homeActivityIntent );
                         });

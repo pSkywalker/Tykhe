@@ -60,7 +60,11 @@ public class HomeActivity extends AppCompatActivity {
     private Repo repo;
     private User user;
     private CurrentSavingsUpdater_ViewModel currentSavingsViewModel;
-
+    @Override
+    public void onBackPressed() {
+        // Do nothing (disable the back button)
+        // You can also show a message or take any other action here
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

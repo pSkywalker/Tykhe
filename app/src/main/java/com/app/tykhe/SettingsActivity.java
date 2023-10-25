@@ -20,7 +20,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     private LinearLayout privacyPolicyButton;
     private LinearLayout termsOfServiceButton;
+    private LinearLayout contactUsButton;
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing (disable the back button)
+        // You can also show a message or take any other action here
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
         this.updateAccountButton = (LinearLayout) findViewById(R.id.profileItemWrapper);
         this.privacyPolicyButton = (LinearLayout) findViewById(R.id.privacyPolicyItemWrapper);
         this.termsOfServiceButton = (LinearLayout) findViewById(R.id.termsOfServiceItemWrapper);
+        this.contactUsButton = ( LinearLayout ) findViewById(R.id.contactUsItemWrapper);
 
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +77,12 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(updateIntent);
             }
         });
-
+        this.contactUsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent updateIntent = new Intent(SettingsActivity.this, ContactUsActivity.class);
+                startActivity(updateIntent);
+            }
+        });
     }
 }

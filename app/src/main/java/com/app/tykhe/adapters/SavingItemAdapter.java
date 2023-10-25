@@ -34,7 +34,7 @@ import java.util.List;
 public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.SavingItemViewHolder> {
 
 
-    private List<SavingItem> savingItemList;
+    public List<SavingItem> savingItemList;
     private Repo repo;
     private Application app;
     private User user;
@@ -49,26 +49,36 @@ public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.Sa
         this.dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         this.dateComparator = (entry1, entry2) -> {
             try {
-                Date date1 = dateFormat.parse(entry1.SavingItmeDate);
-                Date date2 = dateFormat.parse(entry2.SavingItmeDate);
+                Date date1 = new Date(entry1.SavingItmeDate);
+                Date date2 = new Date(entry2.SavingItmeDate);
                 return date2.compareTo(date1);
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 return 0; // Handle parsing errors
             }
         };
     }
 
+    public void removeItem(int position) {
+        this.savingItemList.remove(position);
+        notifyItemRemoved(position);
+    }
+
     public void updateData( List< SavingItem > data ){
         this.savingItemList = data;
         // Sort the list using the custom comparator
-        Collections.sort(this.savingItemList, dateComparator);
+        try {
+            Collections.sort(this.savingItemList, dateComparator);
+        }
+        catch( Exception ex ){ }
         this.notifyDataSetChanged();
     }
     public void updateData ( List<SavingItem> data, User user ){
         this.savingItemList = data;
         this.user = user;
-        Collections.sort(this.savingItemList, dateComparator);
+        try {
+            Collections.sort(this.savingItemList, dateComparator);
+        }catch(Exception ex){ }
         this.notifyDataSetChanged();
     }
 
@@ -97,7 +107,7 @@ public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.Sa
             holder.savingItemWrapper.setBackgroundResource(R.color.reminders_days_of_week_background);
         }
 
-        holder.savingItemDate.setText(savingItemList.get(position).SavingItmeDate);
+        holder.savingItemDate.setText( String.valueOf( dateFormat.format(new Date(savingItemList.get(position).SavingItmeDate))));
         holder.savingItemAmount.setText( "Saving amount: $" + String.valueOf( this.savingItemList.get(position).SavingItemAmounts ) );
 
         switch( this.savingItemList.get(position).SavingItemStatus ) {

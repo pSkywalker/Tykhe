@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.Reminder;
+import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.misc.SavingRateEnum;
 import com.app.tykhe.reminder.BiWeeklyRemindersFragment;
 import com.app.tykhe.reminder.MonthlyRemindersFragment;
@@ -44,6 +45,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
     * */
     private Repo repo;
     private Reminder reminder = null;
+    private User user;
 
     private ReminderDataViewModel reminderViewModel;
 
@@ -61,7 +63,11 @@ public class ReminderSettingsActivity extends AppCompatActivity {
     private SwitchButton reminderStatusToggle;
 
     private Button saveChangesButton;
-
+    @Override
+    public void onBackPressed() {
+        // Do nothing (disable the back button)
+        // You can also show a message or take any other action here
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +101,11 @@ public class ReminderSettingsActivity extends AppCompatActivity {
                 tempReminderObject.setSelfFromEntity( this.reminder );
                 reminderViewModel.updateReminderObject( tempReminderObject );
                 //this.setView();
+            }
+        });
+        repo.getUser().observe(this, user -> {
+            if( !user.isEmpty() ){
+                user = user;
             }
         });
 
@@ -149,14 +160,24 @@ public class ReminderSettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 repo.updateReminder(reminder);
 
-                SavingRateEnum.savingRate newSavingRate = SavingRateEnum.savingRate.Weekly;
-                if( reminder.chosenType == "weekly" ) {
+                SavingRateEnum.savingRate newSavingRate = SavingRateEnum.savingRate.Biweekly;
+                /*if( user.savingRate == SavingRateEnum.savingRate.Weekly ) {
                     newSavingRate = SavingRateEnum.savingRate.Weekly;
                 }
-                else if( reminder.chosenType == "biweekly" ) {
+                else if( user.savingRate == SavingRateEnum.savingRate.Biweekly ) {
                     newSavingRate = SavingRateEnum.savingRate.Biweekly;
                 }
-                else if( reminder.chosenType == "Monthly" ) {
+                else if( user.savingRate == SavingRateEnum.savingRate.Monthly ) {
+                    newSavingRate = SavingRateEnum.savingRate.Monthly;
+                }*/
+
+                if( reminder.chosenType.equals( "weekly") ) {
+                    newSavingRate = SavingRateEnum.savingRate.Weekly;
+                }
+                else if( reminder.chosenType.equals("biweekly")|| reminder.chosenType.equals("monthy") ) {
+                    newSavingRate = SavingRateEnum.savingRate.Biweekly;
+                }
+                else if( reminder.chosenType.equals("Monthly") || reminder.chosenType.equals("monthly") ) {
                     newSavingRate = SavingRateEnum.savingRate.Monthly;
                 }
 
