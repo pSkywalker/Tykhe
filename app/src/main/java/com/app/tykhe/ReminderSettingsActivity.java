@@ -88,18 +88,25 @@ public class ReminderSettingsActivity extends AppCompatActivity {
         this.typeOfSavingFlow.setAdapter( this.pageAdapter );
 
         this.timeOfReminderTextView = (TextView) findViewById(R.id.timeOfReminderTextView);
-        //this.reminderStatusToggle = (com.suke.widget.SwitchButton) findViewById(R.id.reminderStatusToggle);
+        this.reminderStatusToggle = (com.suke.widget.SwitchButton) findViewById(R.id.reminderStatusToggle);
         this.freqText = ( TextView) findViewById(R.id.freqText);
 
         this.saveChangesButton = (Button) findViewById(R.id.saveChangesButton);
 
         repo.getReminder().observe( this, value -> {
             if( this.reminder == null ) {
-                this.reminder = value.get(0);
-               // Log.d( "asdf", String.valueOf( this.reminder.pk ) );
-                com.app.tykhe.models.Reminder tempReminderObject = new com.app.tykhe.models.Reminder();
-                tempReminderObject.setSelfFromEntity( this.reminder );
-                reminderViewModel.updateReminderObject( tempReminderObject );
+                if( !value.isEmpty() ) {
+                    this.reminder = value.get(0);
+                    // Log.d( "asdf", String.valueOf( this.reminder.pk ) );
+                    com.app.tykhe.models.Reminder tempReminderObject = new com.app.tykhe.models.Reminder();
+                    tempReminderObject.setSelfFromEntity(this.reminder);
+                    reminderViewModel.updateReminderObject(tempReminderObject);
+                }
+                else {
+                    repo.createReminder();
+                    typeOfSavingFlow.setCurrentItem(1);
+                    savingRateChosenItem.setText(R.string.weekly);
+                }
                 //this.setView();
             }
         });
@@ -138,14 +145,14 @@ public class ReminderSettingsActivity extends AppCompatActivity {
                 showPopupMenu( view );
             }
         });
-        /*
+
         this.reminderStatusToggle.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 reminder.status = isChecked;
             }
         });
-        */
+
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,7 +199,7 @@ public class ReminderSettingsActivity extends AppCompatActivity {
 
     public void setView(){
         this.timeOfReminderTextView.setText(this.reminder.time);
-//        this.reminderStatusToggle.setChecked(this.reminder.status);
+        this.reminderStatusToggle.setChecked(this.reminder.status);
         switch (this.reminder.chosenType) {
             case "weekly":
                 this.freqText.setText("frequency: Weekly");

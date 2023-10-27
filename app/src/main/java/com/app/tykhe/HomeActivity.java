@@ -1,22 +1,16 @@
 package com.app.tykhe;
 
-import static com.app.tykhe.misc.SavingRateEnum.savingRate.Weekly;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,20 +20,13 @@ import android.widget.TextView;
 import com.app.tykhe.home.NoSavingItemsFragment;
 import com.app.tykhe.home.SavingItemsFragment;
 import com.app.tykhe.localStorage.Repo;
-import com.app.tykhe.localStorage.entities.Reminder;
-import com.app.tykhe.localStorage.entities.SavingItem;
 import com.app.tykhe.localStorage.entities.User;
-import com.app.tykhe.misc.SavingRateEnum;
-import com.app.tykhe.reminder.BiWeeklyRemindersFragment;
-import com.app.tykhe.reminder.MonthlyRemindersFragment;
-import com.app.tykhe.reminder.WeeklyRemindersFragment;
 import com.app.tykhe.services.Restarter;
 import com.app.tykhe.services.SavingItemsSpawner;
 import com.app.tykhe.viewModels.CurrentSavingsUpdater_ViewModel;
-import com.app.tykhe.viewModels.UserOnBoardingViewModel;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.DecimalFormat;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -57,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private boolean firstLoad = true;
 
+    private FirebaseAnalytics fba;
+
     private Repo repo;
     private User user;
     private CurrentSavingsUpdater_ViewModel currentSavingsViewModel;
@@ -69,6 +58,15 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        fba = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "HomeScreenLoaded"); // Name of the content
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "startup");
+        fba.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
 
         SavingItemsSpawner spawner = new SavingItemsSpawner();
         Intent spawnerIntent = new Intent(this, spawner.getClass());

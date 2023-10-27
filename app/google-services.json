@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "820776827825",
+    "project_id": "tykhe-c40d7",
+    "storage_bucket": "tykhe-c40d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820776827825:android:eb2a56667a969a8cf0db90",
+        "android_client_info": {
+          "package_name": "com.app.tykhe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFGOWeCdR9Qt2P0jtIwCQvE3QwfPg3m9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

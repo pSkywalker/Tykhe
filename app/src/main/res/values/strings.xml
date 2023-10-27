@@ -75,6 +75,7 @@
     <string name="reminders_t">T</string>
     <string name="reminders_W">W</string>
     <string name="reminders_f">F</string>
+    <string name="reminder_notification_msg">Please make sure to mark your saving reminder as \'completed\' for today if you wish to create a new one</string>
 
     <string name="reminders_monthly_selection_title">Day of the month</string>
 
@@ -105,6 +106,7 @@
 
 
     <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_link_text">Click here to view the privacy policy.</string>
 
     <string name="terms_of_service_title">Terms of Service</string>
     <string name="terms_of_service_link_text">Click here to view the terms of service.</string>

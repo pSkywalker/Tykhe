@@ -2,6 +2,7 @@ package com.app.tykhe.adapters;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.app.tykhe.localStorage.entities.SavingItem;
 import com.app.tykhe.localStorage.entities.User;
 import com.app.tykhe.misc.CurrentSavingsWrapper;
 import com.app.tykhe.viewModels.CurrentSavingsUpdater_ViewModel;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -42,10 +44,13 @@ public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.Sa
     Comparator<SavingItem> dateComparator;
     SimpleDateFormat dateFormat;
 
+    private FirebaseAnalytics fba;
+
     public SavingItemAdapter( Application application ){
         this.savingItemList = new ArrayList<SavingItem>();
         this.repo = new Repo( application );
         this.app = application;
+        this.fba = FirebaseAnalytics.getInstance(app);
         this.dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         this.dateComparator = (entry1, entry2) -> {
             try {
@@ -120,7 +125,12 @@ public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.Sa
                     public void onClick(View view) {
 
                         viewHolderBtnFunctionality( holder , repo );
-
+                        fba = FirebaseAnalytics.getInstance(app);
+                        Bundle bundle = new Bundle();
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "2");
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "SavingDayCompleted"); // Name of the content
+                        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "action");
+                        fba.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     }
                 });
                 break;
@@ -142,6 +152,12 @@ public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.Sa
                         currentSavingsUpdater_viewModel.setCurrentSavings( new CurrentSavingsWrapper( user.currentSavings += savingItemList.get(holder.getAdapterPosition()).SavingItemAmounts ));
                         */
                         viewHolderBtnFunctionality(holder , repo);
+                        fba = FirebaseAnalytics.getInstance(app);
+                        Bundle bundle = new Bundle();
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "2");
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "SavingDayCompleted"); // Name of the content
+                        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "action");
+                        fba.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     }
                 });
                 break;
@@ -160,6 +176,12 @@ public class SavingItemAdapter extends RecyclerView.Adapter<SavingItemAdapter.Sa
                         currentSavingsUpdater_viewModel.setCurrentSavings( new CurrentSavingsWrapper(  user.currentSavings -= savingItemList.get(holder.getAdapterPosition()).SavingItemAmounts ) );
                         */
                        viewHolderBtnFunctionality( holder, repo );
+                        fba = FirebaseAnalytics.getInstance(app);
+                        Bundle bundle = new Bundle();
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "2");
+                        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "SavingDayCompleted"); // Name of the content
+                        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "action");
+                        fba.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     }
                 });
                 break;

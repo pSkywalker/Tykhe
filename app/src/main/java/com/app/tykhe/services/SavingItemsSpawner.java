@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -22,6 +23,7 @@ import com.app.tykhe.localStorage.Repo;
 import com.app.tykhe.localStorage.entities.Reminder;
 import com.app.tykhe.localStorage.entities.SavingItem;
 import com.app.tykhe.localStorage.entities.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -43,6 +45,7 @@ public class SavingItemsSpawner extends LifecycleService {
     }
 
     private Repo repo;
+    private FirebaseAnalytics fba;
 
     private Reminder reminder;
     private User user;
@@ -88,6 +91,7 @@ public class SavingItemsSpawner extends LifecycleService {
                 this.savingItems = savingItems;
             }
         });
+        this.fba = FirebaseAnalytics.getInstance(this);
     }
 
     private Timer timer;
@@ -111,6 +115,9 @@ public class SavingItemsSpawner extends LifecycleService {
                 this.savingItems = savingItems;
             }
         });
+
+        this.fba = FirebaseAnalytics.getInstance(this);
+
         timerTask = new TimerTask() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             public void run() {
@@ -272,6 +279,9 @@ public class SavingItemsSpawner extends LifecycleService {
                                     break;
                             }
                         }
+                        else {
+                            Log.d("reminderStatus", "status = false");
+                        }
                     } catch (NullPointerException ex) {
                         Log.d("asdf", "reminder not found");
                     }
@@ -368,13 +378,20 @@ public class SavingItemsSpawner extends LifecycleService {
                         addANewSavingItem = false;
                     }
                 }
-                if( addANewSavingItem  && savingItems.size() > 0 ) {
+                if( addANewSavingItem  ) {
                     SavingItem savingItem = new SavingItem();
                     savingItem.SavingItemStatus = 1;
                     savingItem.SavingItemAmounts = user.contributionAmount;
                     savingItem.SavingItmeDate = new Date().toString();
                     repo.createSavingItem(savingItem);
                     Log.d( "fdsa", "from send notification");
+
+                    fba = FirebaseAnalytics.getInstance(this);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "3");
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "NotificationCreated"); // Name of the content
+                    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "action");
+                    fba.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                 }
 
     }

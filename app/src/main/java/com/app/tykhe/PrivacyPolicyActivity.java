@@ -3,6 +3,7 @@ package com.app.tykhe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 public class PrivacyPolicyActivity extends AppCompatActivity {
 
     private ImageView backButton;
+    private TextView privacyPolicyLink;
+
     @Override
     public void onBackPressed() {
         // Do nothing (disable the back button)
@@ -23,7 +26,15 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_privacy_policy);
 
         this.backButton = (ImageView) findViewById(R.id.backButton);
+        this.privacyPolicyLink = ( TextView) findViewById(R.id.link);
 
+        this.privacyPolicyLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://socialfeed-d4df9.firebaseapp.com/"));
+                startActivity(intent);
+            }
+        });
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -91,8 +91,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/savingRateWrapper" />
 
+    <TextView
+        android:id="@+id/reminderText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/gilroy_regular"
+        android:text="@string/reminder_notification_msg"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/reminderWrapper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <LinearLayout
+        android:id="@+id/reminderWrapper"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -122,8 +138,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/reminders_savings_reminder"
                         android:fontFamily="@font/gilroy_medium"
+                        android:text="@string/reminders_savings_reminder"
 
                         android:textColor="@color/black" />
 
@@ -131,8 +147,8 @@
                         android:id="@+id/timeOfReminderTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:fontFamily="@font/gilroy_semi_bold"
+                        android:textColor="@color/black"
 
                         android:textSize="30dp" />
 
@@ -141,7 +157,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <!--
+
                     <com.suke.widget.SwitchButton
                         android:id="@+id/reminderStatusToggle"
                         android:layout_width="wrap_content"
@@ -150,7 +166,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:sb_checked_color="@color/black"
                         app:sb_uncheck_color="@color/white" />
-                       -->
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
